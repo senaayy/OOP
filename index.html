@@ -195,6 +195,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#exceptions">Exceptions</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#keywords">Anahtar Kelimeler</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -1560,6 +1563,216 @@ Hata: Kitap bulunamadı: Bilinmeyen Kitap</code></pre>
                 </div>
                 <div class="card-body">
                     <p class="lead">'Implement' anahtar kelimesi, bir sınıfın bir arayüzdeki metotları (davranışları) sağladığını belirtmek için kullanılır. Bir sınıf bir arayüzü implement ettiğinde, arayüzde tanımlanan tüm soyut metotları kendi içinde gerçeklemek zorundadır.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Java OOP Keywords Section -->
+        <section id="keywords" class="mb-5">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h2 class="mb-0">Java OOP Anahtar Kelimeleri</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <!-- Execute -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-primary text-white">
+                                    <h3 class="mb-0">Execute</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p><code>execute()</code> metodu genellikle bir <strong>arayüz (interface)</strong> içinde tanımlanır ve bu arayüzü uygulayan sınıflar tarafından kendi özel ihtiyaçlarına göre gerçeklenir. Bu, <strong>polymorphism (çok biçimlilik)</strong> prensibini kullanarak, farklı nesneler üzerinde aynı metot çağrısının (<code>execute()</code>) farklı davranışlar sergilemesini sağlar. Örneğin, bir işlem arayüzünü uygulayan farklı sınıflar (Hesaplama, Veri Kaydetme), kendi <code>execute()</code> metotlarını farklı şekillerde uygulayabilir.</p>
+                                    <div class="example-section">
+                                        <pre class="bg-dark text-white p-3 rounded"><code>interface Islem {
+    void execute(); // İşlemi gerçekleştirecek metot
+}
+
+class HesaplamaIslemi implements Islem {
+    @Override
+    public void execute() {
+        System.out.println("Hesaplama işlemi yapılıyor.");
+    }
+}
+
+class VeriKaydetmeIslemi implements Islem {
+    @Override
+    public void execute() {
+        System.out.println("Veri kaydetme işlemi yapılıyor.");
+    }
+}
+
+public class IslemYonetici {
+    public static void main(String[] args) {
+        Islem hesaplama = new HesaplamaIslemi();
+        Islem veriKaydetme = new VeriKaydetmeIslemi();
+
+        hesaplama.execute(); // Hesaplama işlemi
+        veriKaydetme.execute(); // Veri kaydetme işlemi
+    }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Protected -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-primary text-white">
+                                    <h3 class="mb-0">Protected</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p><code>protected</code> erişim belirleyicisi, bir sınıfın üyelerinin (değişkenler ve metotlar) yalnızca:</p>
+                                    <ul>
+                                        <li>Aynı paket içindeki diğer sınıflar tarafından</li>
+                                        <li>Farklı bir pakette olsa bile, o sınıfın alt sınıfları tarafından</li>
+                                    </ul>
+                                    <p>erişilebilir olmasını sağlar. Bu, miras alma (inheritance) yoluyla genişletilebilirlik sağlamak için kullanılırken, direkt dış erişimi kısıtlar.</p>
+                                    <div class="example-section">
+                                        <h4>Örnek: Kitap Sınıfında Protected Kullanımı</h4>
+                                        <pre class="bg-dark text-white p-3 rounded"><code>public class Kitap {
+    protected String isim;
+    protected String yazar;
+    protected int sayfaSayisi;
+    protected boolean oduncAlinabilir;
+
+    public Kitap(String isim, String yazar, int sayfaSayisi) {
+        this.isim = isim;
+        this.yazar = yazar;
+        this.sayfaSayisi = sayfaSayisi;
+        this.oduncAlinabilir = true; // Varsayılan olarak ödünç alınabilir
+    }
+
+    public void bilgileriGoster() {
+        System.out.println("Kitap Adı: " + isim);
+        System.out.println("Yazar: " + yazar);
+        System.out.println("Sayfa Sayısı: " + sayfaSayisi);
+        System.out.println("Ödünç Alınabilir: " + (oduncAlinabilir ? "Evet" : "Hayır"));
+    }
+}
+
+// Alt sınıf aynı pakette veya farklı pakette olabilir
+class Roman extends Kitap {
+    private String tur;
+
+    public Roman(String isim, String yazar, int sayfaSayisi, String tur) {
+        super(isim, yazar, sayfaSayisi);
+        this.tur = tur;
+    }
+
+    @Override
+    public void bilgileriGoster() {
+        super.bilgileriGoster();
+        System.out.println("Tür: " + tur);
+    }
+
+    public void durumuGuncelle(boolean yeniDurum) {
+        // protected olduğu için alt sınıftan erişilebilir
+        this.oduncAlinabilir = yeniDurum;
+        System.out.println(isim + " kitabının ödünç durumu güncellendi: " + (yeniDurum ? "Ödünç Verilebilir" : "Ödünç Verilemez"));
+    }
+}
+
+public class Kutuphane {
+    public static void main(String[] args) {
+        Kitap temelKitap = new Kitap("Java Programlama", "Ali Can", 500);
+        temelKitap.bilgileriGoster();
+        System.out.println("\n");
+
+        Roman maceraRomani = new Roman("Gizemli Ada", "Jules Verne", 300, "Macera");
+        maceraRomani.bilgileriGoster();
+        maceraRomani.durumuGuncelle(false);
+    }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Super -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-primary text-white">
+                                    <h3 class="mb-0">Super</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>Super anahtar kelimesi:</p>
+                                    <ul>
+                                        <li>Üst sınıfın constructor'ını çağırmak için</li>
+                                        <li>Üst sınıfın metodlarına erişmek için</li>
+                                        <li>Üst sınıfın değişkenlerine erişmek için kullanılır</li>
+                                    </ul>
+                                    <div class="example-section">
+                                        <pre class="bg-dark text-white p-3 rounded"><code>class Child extends Parent {
+    public Child() {
+        super(); // Üst sınıf constructor'ı
+    }
+    
+    void method() {
+        super.display(); // Üst sınıf metodu
+    }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- This -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-primary text-white">
+                                    <h3 class="mb-0">This</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>This anahtar kelimesi:</p>
+                                    <ul>
+                                        <li>Mevcut nesneye referans verir</li>
+                                        <li>Constructor'da diğer constructor'ı çağırmak için</li>
+                                        <li>Parametre ismi ile sınıf değişkeni aynı olduğunda ayırt etmek için kullanılır</li>
+                                    </ul>
+                                    <div class="example-section">
+                                        <pre class="bg-dark text-white p-3 rounded"><code>class Person {
+    private String name;
+    
+    public Person(String name) {
+        this.name = name; // Sınıf değişkeni
+    }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Try -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-primary text-white">
+                                    <h3 class="mb-0">Try</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>Try bloğu:</p>
+                                    <ul>
+                                        <li>Hata oluşabilecek kodları içerir</li>
+                                        <li>catch ile hata yakalanır</li>
+                                        <li>finally ile kesin çalışması gereken kodlar yazılır</li>
+                                    </ul>
+                                    <div class="example-section">
+                                        <pre class="bg-dark text-white p-3 rounded"><code>try {
+    // Hata oluşabilecek kod
+    int result = 10 / 0;
+} catch (ArithmeticException e) {
+    // Hata yakalama
+    System.out.println("Hata: " + e.getMessage());
+} finally {
+    // Her durumda çalışacak kod
+    System.out.println("İşlem tamamlandı");
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
