@@ -1813,5 +1813,91 @@ public class Kutuphane {
             });
         });
     </script>
+
+    <!-- Ortak Pratik Bölümü Başlangıcı -->
+    <section id="practice" class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow">
+                        <div class="card-header bg-primary text-white">
+                            <h2 class="mb-0">Pratik Alanı</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="lead">Aşağıdan bir konu seçin, <code>// TODO:</code> ile belirtilen alanı doldurun ve cevabınızı kontrol edin.</p>
+                            <div class="mb-3">
+                                <label for="practice-topic" class="form-label">Konu Seçin:</label>
+                                <select id="practice-topic" class="form-select mb-3">
+                                    <option value="constructor">Constructor</option>
+                                    <option value="inheritance">Inheritance</option>
+                                    <option value="overriding">Method Overriding</option>
+                                    <option value="encapsulation">Encapsulation</option>
+                                    <option value="polymorphism">Polymorphism</option>
+                                    <option value="final">Final Proje</option>
+                                </select>
+                                <label for="practice-code" class="form-label">Kodunuzu yazın:</label>
+                                <textarea id="practice-code" class="form-control" rows="10" style="font-family: 'Courier New', monospace;"></textarea>
+                            </div>
+                            <button id="check-btn" class="btn btn-success">Kontrol Et</button>
+                            <div id="feedback" class="mt-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Ortak Pratik Bölümü Sonu -->
+
+    <script>
+    // Her konu için örnek kod ve doğru cevaplar
+    const practiceExamples = {
+        constructor: {
+            code: `public class Araba {\n    private String marka;\n    private int yil;\n    // TODO: marka ve yıl alanlarını alan bir constructor yaz\n    // TODO: marka ve yılı ekrana yazdıran bir metot yaz\n}\n`,
+            answer: `public Araba(String marka, int yil) {\n    this.marka = marka;\n    this.yil = yil;\n}\npublic void bilgileriGoster() {\n    System.out.println(\"Marka: \" + marka + ", Yıl: " + yil);\n}`
+        },
+        inheritance: {
+            code: `class Calisan {\n    String isim;\n    // TODO: isim alanını alan bir constructor yaz\n    // TODO: bilgileriGoster metodu yaz\n}\n\nclass Mudur extends Calisan {\n    int sorumluKisiSayisi;\n    // TODO: isim ve sorumluKisiSayisi alan bir constructor yaz\n    // TODO: bilgileriGoster metodunu override et ve ekrana hem isim hem sorumluKisiSayisi yazdır\n}\n`,
+            answer: `public Calisan(String isim) {\n    this.isim = isim;\n}\npublic void bilgileriGoster() {\n    System.out.println(\"İsim: \" + isim);\n}\npublic Mudur(String isim, int sorumluKisiSayisi) {\n    super(isim);\n    this.sorumluKisiSayisi = sorumluKisiSayisi;\n}\n@Override\npublic void bilgileriGoster() {\n    super.bilgileriGoster();\n    System.out.println(\"Sorumlu Kişi Sayısı: \" + sorumluKisiSayisi);\n}`
+        },
+        overriding: {
+            code: `class Sekil {\n    // TODO: alanHesapla metodu yaz (double döndürsün, 0 dönsün)\n}\n\nclass Daire extends Sekil {\n    double yaricap;\n    public Daire(double yaricap) {\n        this.yaricap = yaricap;\n    }\n    // TODO: alanHesapla metodunu override et (pi*r*r)\n}\n`,
+            answer: `public double alanHesapla() {\n    return 0;\n}\n@Override\npublic double alanHesapla() {\n    return Math.PI * yaricap * yaricap;\n}`
+        },
+        encapsulation: {
+            code: `public class Hesap {\n    private double bakiye;\n    // TODO: bakiye'yi sadece pozitifse değiştiren bir setter yaz\n    // TODO: bakiye'yi döndüren bir getter yaz\n}\n`,
+            answer: `public void setBakiye(double bakiye) {\n    if (bakiye > 0) {\n        this.bakiye = bakiye;\n    }\n}\npublic double getBakiye() {\n    return bakiye;\n}`
+        },
+        polymorphism: {
+            code: `interface Hayvan {\n    void sesCikar();\n}\n\nclass Kopek implements Hayvan {\n    // TODO: sesCikar metodunu \"Hav hav!\" yazacak şekilde yaz\n}\n\nclass Kus implements Hayvan {\n    // TODO: sesCikar metodunu \"Cik cik!\" yazacak şekilde yaz\n}\n\n// TODO: main metodunda Hayvan tipinde bir dizi oluşturup, Kopek ve Kus nesnelerini ekle ve döngüyle sesCikar çağır\n`,
+            answer: `public void sesCikar() {\n    System.out.println(\"Hav hav!\");\n}\npublic void sesCikar() {\n    System.out.println(\"Cik cik!\");\n}\nHayvan[] hayvanlar = { new Kopek(), new Kus() };\nfor (Hayvan h : hayvanlar) {\n    h.sesCikar();\n}`
+        },
+        final: {
+            code: `// TODO: Kitap soyut sınıfı, Roman ve DersKitabi alt sınıfları, Kutuphane sınıfı ve kitap ekleme/listeleme metotlarını yaz\n`,
+            answer: `abstract class Kitap {\n    String isim;\n    public Kitap(String isim) { this.isim = isim; }\n    public abstract String getTur();\n}\nclass Roman extends Kitap {\n    public Roman(String isim) { super(isim); }\n    public String getTur() { return \"Roman\"; }\n}\nclass DersKitabi extends Kitap {\n    public DersKitabi(String isim) { super(isim); }\n    public String getTur() { return \"Ders Kitabı\"; }\n}\nclass Kutuphane {\n    List<Kitap> kitaplar = new ArrayList<>();\n    public void kitapEkle(Kitap k) { kitaplar.add(k); }\n    public void kitaplariListele() {\n        for (Kitap k : kitaplar)\n            System.out.println(k.isim + \" - \" + k.getTur());\n    }\n}`
+        }
+    };
+
+    // Sayfa yüklendiğinde ve konu değiştiğinde kodu güncelle
+    function updatePracticeCode() {
+        const topic = document.getElementById('practice-topic').value;
+        document.getElementById('practice-code').value = practiceExamples[topic].code;
+        document.getElementById('feedback').innerHTML = '';
+    }
+    document.getElementById('practice-topic').addEventListener('change', updatePracticeCode);
+    window.addEventListener('DOMContentLoaded', updatePracticeCode);
+
+    document.getElementById('check-btn').addEventListener('click', function() {
+        const topic = document.getElementById('practice-topic').value;
+        const userCode = document.getElementById('practice-code').value.replace(/\s/g, '');
+        const expected = practiceExamples[topic].answer.replace(/\s/g, '');
+        let feedback = '';
+        if (userCode.includes(expected)) {
+            feedback = '<div class="alert alert-success">Tebrikler, doğru!</div>';
+        } else {
+            feedback = '<div class="alert alert-danger">Cevabınız eksik veya hatalı.<br>Doğru cevap:<br><pre>' + practiceExamples[topic].answer + '</pre></div>';
+        }
+        document.getElementById('feedback').innerHTML = feedback;
+    });
+    </script>
 </body>
 </html> 
