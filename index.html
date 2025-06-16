@@ -143,7 +143,6 @@
             opacity: 1;
         }
 
-        /* VSCode Dark+ kod teması */
         .vsc-dark-plus {
             background: #1e1e1e !important;
             color: #d4d4d4 !important;
@@ -160,14 +159,11 @@
         }
         .vsc-dark-plus .keyword { color: #569CD6; }
         .vsc-dark-plus .type { color: #4EC9B0; }
-        .vsc-dark-plus .string { color: #D69D85; }
-        .vsc-dark-plus .comment { color: #6A9955; }
         .vsc-dark-plus .number { color: #B5CEA8; }
         .vsc-dark-plus .function { color: #DCDCAA; }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -204,7 +200,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="bg-dark text-white py-5">
         <div class="container text-center">
             <h1 class="display-4 mb-4">Java OOP Öğrenme Platformu</h1>
@@ -242,10 +237,10 @@ class Kedi extends Hayvan {
                         <pre class="bg-dark text-white p-3 rounded"><code>public class MetotEzmeOrnek {
     public static void main(String[] args) {
         Hayvan hayvan = new Hayvan();
-        hayvan.sesCikar(); // Çıktı: Hayvan sesi
+        hayvan.sesCikar();
 
         Kedi kedi = new Kedi();
-        kedi.sesCikar();   // Çıktı: Miyav!
+        kedi.sesCikar();
     }
 }</code></pre>
                     </div>
@@ -284,9 +279,9 @@ class ElektrikliAraba extends Araba {
         Arac arac2 = new Araba();
         Arac arac3 = new ElektrikliAraba();
 
-        arac1.calistir(); // Çıktı: Araç çalıştı.
-        arac2.calistir(); // Çıktı: Araba anahtarla çalıştı.
-        arac3.calistir(); // Çıktı: Elektrikli araba düğmeye basılarak çalıştı.
+        arac1.calistir();
+        arac2.calistir();
+        arac3.calistir();
     }
 }</code></pre>
                     </div>
@@ -1466,21 +1461,18 @@ class Kutuphane {
 
     // İstisna İşleme (Exception Handling): try-catch blokları ile olası hataları (kitap bulunamadı, zaten ödünç alınmış) yönetir.
     public void kitapOduncAl(String kitapIsmi) {
-        try {
-            Kitap kitap = kitaplar.stream()
-                                .filter(k -> k.getIsim().equals(kitapIsmi))
-                                .findFirst()
-                                .orElseThrow(() -> new Exception("Kitap bulunamadı: " + kitapIsmi));
-
-            if (!kitap.isOduncAlinabilir()) {
-                throw new Exception("Kitap zaten ödünç alınmış: " + kitapIsmi);
+        for (Kitap kitap : kitaplar) {
+            if (kitap.getIsim().equals(kitapIsmi)) {
+                if (kitap.isOduncAlinabilir()) {
+                    kitap.setOduncAlinabilir(false);
+                    System.out.println(kitapIsmi + " başarıyla ödünç alındı.");
+                } else {
+                    System.out.println("Hata: Kitap zaten ödünç alınmış: " + kitapIsmi);
+                }
+                return;
             }
-
-            kitap.setOduncAlinabilir(false);
-            System.out.println(kitapIsmi + " başarıyla ödünç alındı.");
-        } catch (Exception e) {
-            System.out.println("Hata: " + e.getMessage());
         }
+        System.out.println("Hata: Kitap bulunamadı: " + kitapIsmi);
     }
 }</code></pre>
                         </div>
@@ -1570,19 +1562,6 @@ Hata: Kitap bulunamadı: Bilinmeyen Kitap</code></pre>
                     behavior: 'smooth'
                 });
             });
-        });
-
-        function vscHighlight(code) {
-            return code
-                .replace(/(\/\/.*)/g, '<span class="comment">$1<\/span>')
-                .replace(/("(?:[^"\\]|\\.)*")/g, '<span class="string">$1<\/span>')
-                .replace(/\b(class|public|private|protected|static|void|int|double|float|boolean|new|return|if|else|for|while|abstract|extends|implements|interface|package|import|try|catch|finally|throw|throws|super|this)\b/g, '<span class="keyword">$1<\/span>')
-                .replace(/\b([A-Z][a-zA-Z0-9_]*)\b/g, '<span class="type">$1<\/span>')
-                .replace(/\b([0-9]+)\b/g, '<span class="number">$1<\/span>');
-        }
-        document.querySelectorAll('pre code').forEach(function(block) {
-            block.parentElement.classList.add('vsc-dark-plus');
-            block.innerHTML = vscHighlight(block.textContent);
         });
     </script>
 </body>
