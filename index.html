@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java OOP Öğrenme Platformu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 50px;
+        }
+
+        .topic-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 10px 10px 0 0 !important;
+        }
+
+        .code-block {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .example-section {
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .difficulty-badge {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .difficulty-easy {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .difficulty-medium {
+            background-color: #f1c40f;
+            color: white;
+        }
+
+        .difficulty-hard {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fab fa-java me-2"></i>Java OOP
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#overriding">Method Overriding</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#overloading">Method Overloading</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#polymorphism">Polymorphism</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inheritance">Inheritance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#encapsulation">Encapsulation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#abstraction">Abstraction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#exceptions">Exceptions</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-dark text-white py-5">
+        <div class="container text-center">
+            <h1 class="display-4 mb-4">Java OOP Öğrenme Platformu</h1>
+            <p class="lead">Nesne Yönelimli Programlama kavramlarını interaktif örneklerle öğrenin</p>
+        </div>
+    </section>
+
+    <div class="container mt-5">
+        <!-- Method Overriding Section -->
+        <section id="overriding" class="mb-5">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h2 class="mb-0">Method Overriding (Metot Ezme)</h2>
+                </div>
+                <div class="card-body">
+                    <p class="lead">Method overriding, bir alt sınıfın üst sınıftan miras aldığı bir metodu kendi ihtiyaçlarına göre yeniden tanımlamasıdır.</p>
+                    
+                    <div class="bg-light p-4 rounded">
+                        <h4>Kolay Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>class Hayvan {
+    void sesCikar() {
+        System.out.println("Hayvan sesi");
+    }
+}
+
+class Kedi extends Hayvan {
+    @Override
+    void sesCikar() {
+        System.out.println("Miyav!");
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class MetotEzmeOrnek {
+    public static void main(String[] args) {
+        Hayvan hayvan = new Hayvan();
+        hayvan.sesCikar(); // Çıktı: Hayvan sesi
+
+        Kedi kedi = new Kedi();
+        kedi.sesCikar();   // Çıktı: Miyav!
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>Hayvan sesi
+Miyav!</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-4">
+                        <h4>Orta Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>class Arac {
+    void calistir() {
+        System.out.println("Araç çalıştı.");
+    }
+}
+
+class Araba extends Arac {
+    @Override
+    void calistir() {
+        System.out.println("Araba anahtarla çalıştı.");
+    }
+}
+
+class ElektrikliAraba extends Araba {
+    @Override
+    void calistir() {
+        System.out.println("Elektrikli araba düğmeye basılarak çalıştı.");
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class OrtaMetotEzmeOrnek {
+    public static void main(String[] args) {
+        Arac arac1 = new Arac();
+        Arac arac2 = new Araba();
+        Arac arac3 = new ElektrikliAraba();
+
+        arac1.calistir(); // Çıktı: Araç çalıştı.
+        arac2.calistir(); // Çıktı: Araba anahtarla çalıştı.
+        arac3.calistir(); // Çıktı: Elektrikli araba düğmeye basılarak çalıştı.
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>Araç çalıştı.
+Araba anahtarla çalıştı.
+Elektrikli araba düğmeye basılarak çalıştı.</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-4">
+                        <h4>Zor Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>abstract class SekilCizici {
+    abstract void ciz();
+}
+
+class DaireCizici extends SekilCizici {
+    @Override
+    void ciz() {
+        System.out.println("Daire çiziliyor...");
+    }
+}
+
+class KareCizici extends SekilCizici {
+    @Override
+    void ciz() {
+        System.out.println("Kare çiziliyor...");
+    }
+}
+
+class UcgenCizici extends SekilCizici {
+    @Override
+    void ciz() {
+        System.out.println("Üçgen çiziliyor...");
+    }
+}
+
+// Fabrika metodu desenini kullanarak esnek bir yapı
+class SekilFabrikasi {
+    public static SekilCizici getSekil(String tip) {
+        if (tip.equalsIgnoreCase("daire")) {
+            return new DaireCizici();
+        } else if (tip.equalsIgnoreCase("kare")) {
+            return new KareCizici();
+        } else if (tip.equalsIgnoreCase("ucgen")) {
+            return new UcgenCizici();
+        }
+        return null;
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class ZorMetotEzmeOrnek {
+    public static void main(String[] args) {
+        SekilCizici cizici1 = SekilFabrikasi.getSekil("daire");
+        if (cizici1 != null) {
+            cizici1.ciz();
+        }
+
+        SekilCizici cizici2 = SekilFabrikasi.getSekil("kare");
+        if (cizici2 != null) {
+            cizici2.ciz();
+        }
+
+        SekilCizici cizici3 = SekilFabrikasi.getSekil("ucgen");
+        if (cizici3 != null) {
+            cizici3.ciz();
+        }
+
+        SekilCizici cizici4 = SekilFabrikasi.getSekil("hicbirsey");
+        if (cizici4 == null) {
+            System.out.println("Geçersiz şekil tipi!");
+        }
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>Daire çiziliyor...
+Kare çiziliyor...
+Üçgen çiziliyor...
+Geçersiz şekil tipi!</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Method Overloading Section -->
+        <section id="overloading" class="mb-5">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h2 class="mb-0">Method Overloading (Metot Aşırı Yükleme)</h2>
+                </div>
+                <div class="card-body">
+                    <p class="lead">Method overloading, aynı isimde farklı parametrelerle birden fazla metot tanımlamaktır.</p>
+                    
+                    <div class="bg-light p-4 rounded">
+                        <h4>Kolay Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>class Hesaplayici {
+    int topla(int a, int b) {
+        return a + b;
+    }
+    
+    double topla(double a, double b) {
+        return a + b;
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class MetotAsiriYuklemeOrnek {
+    public static void main(String[] args) {
+        Hesaplayici hesaplayici = new Hesaplayici();
+
+        System.out.println("İki int sayının toplamı: " + hesaplayici.topla(5, 10));
+        System.out.println("İki double sayının toplamı: " + hesaplayici.topla(5.5, 10.5));
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>İki int sayının toplamı: 15
+İki double sayının toplamı: 16.0</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-4">
+                        <h4>Orta Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>class MatematikIslemleri {
+    // İki tamsayıyı çarpar
+    int carp(int a, int b) {
+        return a * b;
+    }
+
+    // Üç tamsayıyı çarpar
+    int carp(int a, int b, int c) {
+        return a * b * c;
+    }
+
+    // İki double sayıyı çarpar
+    double carp(double a, double b) {
+        return a * b;
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class OrtaMetotAsiriYuklemeOrnek {
+    public static void main(String[] args) {
+        MatematikIslemleri islemler = new MatematikIslemleri();
+
+        System.out.println("İki tamsayının çarpımı: " + islemler.carp(4, 5));
+        System.out.println("Üç tamsayının çarpımı: " + islemler.carp(2, 3, 4));
+        System.out.println("İki double sayının çarpımı: " + islemler.carp(2.5, 3.0));
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>İki tamsayının çarpımı: 20
+Üç tamsayının çarpımı: 24
+İki double sayının çarpımı: 7.5</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-4">
+                        <h4>Zor Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>class CalisanMaasHesaplayici {
+    // Temel maaş hesaplama
+    double hesaplaMaas(double saatlikUcret, int calismaSaati) {
+        return saatlikUcret * calismaSaati;
+    }
+
+    // Fazla mesai ile maaş hesaplama
+    double hesaplaMaas(double saatlikUcret, int calismaSaati, double fazlaMesaiSaatlikUcret, int fazlaMesaiSaati) {
+        return (saatlikUcret * calismaSaati) + (fazlaMesaiSaatlikUcret * fazlaMesaiSaati);
+    }
+
+    // Prim ile maaş hesaplama
+    double hesaplaMaas(double temelMaas, double primOrani) {
+        return temelMaas * (1 + primOrani);
+    }
+
+    // Bonus ile maaş hesaplama
+    double hesaplaMaas(double saatlikUcret, int calismaSaati, double bonus) {
+        return (saatlikUcret * calismaSaati) + bonus;
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class ZorMetotAsiriYuklemeOrnek {
+    public static void main(String[] args) {
+        CalisanMaasHesaplayici maasHesaplayici = new CalisanMaasHesaplayici();
+
+        // Temel maaş
+        System.out.println("Temel Maaş: " + maasHesaplayici.hesaplaMaas(50.0, 160));
+
+        // Fazla mesai ile maaş
+        System.out.println("Fazla Mesai ile Maaş: " + maasHesaplayici.hesaplaMaas(50.0, 160, 75.0, 20));
+
+        // Prim ile maaş
+        System.out.println("Prim ile Maaş: " + maasHesaplayici.hesaplaMaas(8000.0, 0.15));
+
+        // Bonus ile maaş
+        System.out.println("Bonus ile Maaş: " + maasHesaplayici.hesaplaMaas(50.0, 160, 1000.0));
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>Temel Maaş: 8000.0
+Fazla Mesai ile Maaş: 9500.0
+Prim ile Maaş: 9200.0
+Bonus ile Maaş: 9000.0</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Polymorphism Section -->
+        <section id="polymorphism" class="mb-5">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h2 class="mb-0">Polymorphism (Çok Biçimlilik)</h2>
+                </div>
+                <div class="card-body">
+                    <p class="lead">Polymorphism, aynı arayüzün farklı şekillerde uygulanabilmesidir.</p>
+                    
+                    <div class="bg-light p-4 rounded">
+                        <h4>Kolay Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>interface Sekil {
+    double alanHesapla();
+}
+
+class Dikdortgen implements Sekil {
+    private double en, boy;
+    
+    public Dikdortgen(double en, double boy) {
+        this.en = en;
+        this.boy = boy;
+    }
+    
+    @Override
+    public double alanHesapla() {
+        return en * boy;
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class CokBicimlilikOrnek {
+    public static void main(String[] args) {
+        Sekil dikdortgen = new Dikdortgen(5, 4);
+        System.out.println("Dikdörtgen Alanı: " + dikdortgen.alanHesapla());
+
+        // Yeni bir şekil tipi eklediğimizde, mevcut kodu değiştirmemize gerek kalmaz.
+        // Örneğin, bir Daire sınıfı ekleyebiliriz:
+        // class Daire implements Sekil {
+        //     private double yaricap;
+        //     public Daire(double yaricap) { this.yaricap = yaricap; }
+        //     @Override public double alanHesapla() { return Math.PI * yaricap * yaricap; }
+        // }
+        // Sekil daire = new Daire(3);
+        // System.out.println("Daire Alanı: " + daire.alanHesapla());
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>Dikdörtgen Alanı: 20.0</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-4">
+                        <h4>Orta Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>interface Cihaz {
+    void calis();
+}
+
+class Telefon implements Cihaz {
+    @Override
+    public void calis() {
+        System.out.println("Telefon açılıyor...");
+    }
+}
+
+class Bilgisayar implements Cihaz {
+    @Override
+    public void calis() {
+        System.out.println("Bilgisayar başlatılıyor...");
+    }
+}
+
+class Tablet implements Cihaz {
+    @Override
+    public void calis() {
+        System.out.println("Tablet açılıyor...");
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class OrtaCokBicimlilikOrnek {
+    public static void main(String[] args) {
+        Cihaz[] cihazlar = new Cihaz[3];
+        cihazlar[0] = new Telefon();
+        cihazlar[1] = new Bilgisayar();
+        cihazlar[2] = new Tablet();
+
+        for (Cihaz cihaz : cihazlar) {
+            cihaz.calis();
+        }
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>Telefon açılıyor...
+Bilgisayar başlatılıyor...
+Tablet açılıyor...</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-4">
+                        <h4>Zor Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>interface Islem {
+    void execute();
+}
+
+class HesaplamaIslemi implements Islem {
+    @Override
+    public void execute() {
+        System.out.println("Hesaplama işlemi yapılıyor.");
+    }
+}
+
+class VeriKaydetmeIslemi implements Islem {
+    @Override
+    public void execute() {
+        System.out.println("Veri kaydetme işlemi yapılıyor.");
+    }
+}
+
+class RaporlamaIslemi implements Islem {
+    @Override
+    public void execute() {
+        System.out.println("Raporlama işlemi yapılıyor.");
+    }
+}
+
+// Komut deseni (Command Pattern) uygulaması
+class IslemYurutucu {
+    private Islem komut;
+
+    public void setKomut(Islem komut) {
+        this.komut = komut;
+    }
+
+    public void yurut() {
+        if (komut != null) {
+            komut.execute();
+        } else {
+            System.out.println("Hiçbir komut ayarlanmadı.");
+        }
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class ZorCokBicimlilikOrnek {
+    public static void main(String[] args) {
+        IslemYurutucu yurutucu = new IslemYurutucu();
+
+        yurutucu.setKomut(new HesaplamaIslemi());
+        yurutucu.yurut();
+
+        yurutucu.setKomut(new VeriKaydetmeIslemi());
+        yurutucu.yurut();
+
+        yurutucu.setKomut(new RaporlamaIslemi());
+        yurutucu.yurut();
+
+        yurutucu.setKomut(null);
+        yurutucu.yurut();
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>Hesaplama işlemi yapılıyor.
+Veri kaydetme işlemi yapılıyor.
+Raporlama işlemi yapılıyor.
+Hiçbir komut ayarlanmadı.</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inheritance Section -->
+        <section id="inheritance" class="mb-5">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h2 class="mb-0">Inheritance (Kalıtım)</h2>
+                </div>
+                <div class="card-body">
+                    <p class="lead">Inheritance, bir sınıfın başka bir sınıftan özelliklerini ve davranışlarını miras almasıdır.</p>
+                    
+                    <div class="bg-light p-4 rounded">
+                        <h4>Kolay Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>class Calisan {
+    protected String isim;
+    protected double maas;
+    
+    public Calisan(String isim, double maas) {
+        this.isim = isim;
+        this.maas = maas;
+    }
+
+    public void bilgileriGoster() {
+        System.out.println("İsim: " + isim + ", Maaş: " + maas);
+    }
+}
+
+class Yazilimci extends Calisan {
+    private String programlamaDili;
+    
+    public Yazilimci(String isim, double maas, String programlamaDili) {
+        super(isim, maas);
+        this.programlamaDili = programlamaDili;
+    }
+
+    @Override
+    public void bilgileriGoster() {
+        super.bilgileriGoster();
+        System.out.println("Programlama Dili: " + programlamaDili);
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class KalitimOrnek {
+    public static void main(String[] args) {
+        Calisan calisan = new Calisan("Ali", 5000);
+        calisan.bilgileriGoster();
+
+        Yazilimci yazilimci = new Yazilimci("Ayşe", 7000, "Java");
+        yazilimci.bilgileriGoster();
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>İsim: Ali, Maaş: 5000.0
+İsim: Ayşe, Maaş: 7000.0
+Programlama Dili: Java</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-4">
+                        <h4>Orta Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>class Personel {
+    String ad;
+    String departman;
+
+    public Personel(String ad, String departman) {
+        this.ad = ad;
+        this.departman = departman;
+    }
+
+    void bilgileriGoster() {
+        System.out.println("Ad: " + ad + ", Departman: " + departman);
+    }
+}
+
+class Yonetici extends Personel {
+    int yonetilenPersonelSayisi;
+
+    public Yonetici(String ad, String departman, int yonetilenPersonelSayisi) {
+        super(ad, departman);
+        this.yonetilenPersonelSayisi = yonetilenPersonelSayisi;
+    }
+
+    @Override
+    void bilgileriGoster() {
+        super.bilgileriGoster();
+        System.out.println("Yönetilen Personel Sayısı: " + yonetilenPersonelSayisi);
+    }
+}
+
+class Mudur extends Yonetici {
+    String sirketAdi;
+
+    public Mudur(String ad, String departman, int yonetilenPersonelSayisi, String sirketAdi) {
+        super(ad, departman, yonetilenPersonelSayisi);
+        this.sirketAdi = sirketAdi;
+    }
+
+    @Override
+    void bilgileriGoster() {
+        super.bilgileriGoster();
+        System.out.println("Şirket Adı: " + sirketAdi);
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class OrtaKalitimOrnek {
+    public static void main(String[] args) {
+        Personel personel = new Personel("Can", "İnsan Kaynakları");
+        personel.bilgileriGoster();
+
+        Yonetici yonetici = new Yonetici("Ebru", "Pazarlama", 15);
+        yonetici.bilgileriGoster();
+
+        Mudur mudur = new Mudur("Koray", "Yönetim", 50, "ABC Şirketi");
+        mudur.bilgileriGoster();
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>Ad: Can, Departman: İnsan Kaynakları
+Ad: Ebru, Departman: Pazarlama
+Yönetilen Personel Sayısı: 15
+Ad: Koray, Departman: Yönetim
+Yönetilen Personel Sayısı: 50
+Şirket Adı: ABC Şirketi</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-4">
+                        <h4>Zor Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>abstract class Cihaz {
+    protected String marka;
+    protected String model;
+
+    public Cihaz(String marka, String model) {
+        this.marka = marka;
+        this.model = model;
+    }
+
+    public abstract void ac();
+    public abstract void kapat();
+
+    public void bilgiGoster() {
+        System.out.println("Marka: " + marka + ", Model: " + model);
+    }
+}
+
+class AkilliTelefon extends Cihaz {
+    private String isletimSistemi;
+
+    public AkilliTelefon(String marka, String model, String isletimSistemi) {
+        super(marka, model);
+        this.isletimSistemi = isletimSistemi;
+    }
+
+    @Override
+    public void ac() {
+        System.out.println(marka + " " + model + " (Android) başlatılıyor...");
+    }
+
+    @Override
+    public void kapat() {
+        System.out.println(marka + " " + model + " (Android) kapatılıyor.");
+    }
+
+    public void uygulamaCalistir(String uygulamaAdi) {
+        System.out.println(uygulamaAdi + " uygulaması " + isletimSistemi + " üzerinde çalıştırılıyor.");
+    }
+}
+
+class DizustuBilgisayar extends Cihaz {
+    private String islemci;
+
+    public DizustuBilgisayar(String marka, String model, String islemci) {
+        super(marka, model);
+        this.islemci = islemci;
+    }
+
+    @Override
+    public void ac() {
+        System.out.println(marka + " " + model + " (Windows) başlatılıyor...");
+    }
+
+    @Override
+    public void kapat() {
+        System.out.println(marka + " " + model + " (Windows) kapatılıyor.");
+    }
+
+    public void programYukle(String programAdi) {
+        System.out.println(programAdi + " programı " + islemci + " işlemcili bilgisayara yükleniyor.");
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class ZorKalitimOrnek {
+    public static void main(String[] args) {
+        AkilliTelefon telefon = new AkilliTelefon("Samsung", "Galaxy S21", "Android");
+        telefon.bilgiGoster();
+        telefon.ac();
+        telefon.uygulamaCalistir("Instagram");
+        telefon.kapat();
+
+        System.out.println("\n");
+
+        DizustuBilgisayar bilgisayar = new DizustuBilgisayar("Dell", "XPS 15", "Intel i7");
+        bilgisayar.bilgiGoster();
+        bilgisayar.ac();
+        bilgisayar.programYukle("Visual Studio Code");
+        bilgisayar.kapat();
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>Marka: Samsung, Model: Galaxy S21
+Samsung Galaxy S21 (Android) başlatılıyor...
+Instagram uygulaması Android üzerinde çalıştırılıyor.
+Samsung Galaxy S21 (Android) kapatılıyor.
+
+Marka: Dell, Model: XPS 15
+Dell XPS 15 (Windows) başlatılıyor...
+Visual Studio Code programı Intel i7 işlemcili bilgisayara yükleniyor.
+Dell XPS 15 (Windows) kapatılıyor.</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Encapsulation Section -->
+        <section id="encapsulation" class="mb-5">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h2 class="mb-0">Encapsulation (Kapsülleme)</h2>
+                </div>
+                <div class="card-body">
+                    <p class="lead">Encapsulation, bir nesnenin verilerini (alanlarını) ve bu verilere erişimi veya onları değiştirmeyi sağlayan metotları tek bir birim altında birleştirme ve dışarıdan doğrudan erişimi engelleme prensibidir.</p>
+                    
+                    <div class="bg-light p-4 rounded">
+                        <h4>Kolay Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class Ogrenci {
+    private String ad;
+    private int yas;
+
+    public String getAd() {
+        return ad;
+    }
+
+    public void setAd(String ad) {
+        this.ad = ad;
+    }
+
+    public int getYas() {
+        return yas;
+    }
+
+    public void setYas(int yas) {
+        if (yas > 0) {
+            this.yas = yas;
+        }
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class KapsullemeOrnek {
+    public static void main(String[] args) {
+        Ogrenci ogrenci = new Ogrenci();
+        ogrenci.setAd("Fatma");
+        ogrenci.setYas(20);
+
+        System.out.println("Öğrenci Adı: " + ogrenci.getAd());
+        System.out.println("Öğrenci Yaşı: " + ogrenci.getYas());
+
+        // Geçersiz yaş denemesi
+        ogrenci.setYas(-5);
+        System.out.println("Yeni Öğrenci Yaşı (geçersiz): " + ogrenci.getYas());
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>Öğrenci Adı: Fatma
+Öğrenci Yaşı: 20
+Yeni Öğrenci Yaşı (geçersiz): 20</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-4">
+                        <h4>Orta Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>class BankaHesabi {
+    private String hesapNumarasi;
+    private double bakiye;
+
+    public BankaHesabi(String hesapNumarasi, double baslangicBakiyesi) {
+        this.hesapNumarasi = hesapNumarasi;
+        this.bakiye = baslangicBakiyesi;
+    }
+
+    public String getHesapNumarasi() {
+        return hesapNumarasi;
+    }
+
+    public double getBakiye() {
+        return bakiye;
+    }
+
+    public void paraYatir(double miktar) {
+        if (miktar > 0) {
+            bakiye += miktar;
+            System.out.println(miktar + " TL yatırıldı. Yeni bakiye: " + bakiye + " TL");
+        } else {
+            System.out.println("Geçersiz miktar. Para yatırma başarısız.");
+        }
+    }
+
+    public void paraCek(double miktar) {
+        if (miktar > 0 && bakiye >= miktar) {
+            bakiye -= miktar;
+            System.out.println(miktar + " TL çekildi. Yeni bakiye: " + bakiye + " TL");
+        } else if (miktar <= 0) {
+            System.out.println("Geçersiz miktar. Para çekme başarısız.");
+        } else {
+            System.out.println("Yetersiz bakiye. Para çekme başarısız.");
+        }
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class OrtaKapsullemeOrnek {
+    public static void main(String[] args) {
+        BankaHesabi hesap = new BankaHesabi("TR123456789", 1000.0);
+        System.out.println("Hesap Numarası: " + hesap.getHesapNumarasi());
+        System.out.println("Mevcut Bakiye: " + hesap.getBakiye() + " TL");
+
+        hesap.paraYatir(500.0);
+        hesap.paraCek(200.0);
+        hesap.paraCek(1500.0); // Yetersiz bakiye
+        hesap.paraYatir(-100.0); // Geçersiz miktar
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>Hesap Numarası: TR123456789
+Mevcut Bakiye: 1000.0 TL
+500.0 TL yatırıldı. Yeni bakiye: 1500.0 TL
+200.0 TL çekildi. Yeni bakiye: 1300.0 TL
+Yetersiz bakiye. Para çekme başarısız.
+Geçersiz miktar. Para yatırma başarısız.</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-4">
+                        <h4>Zor Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>class KullaniciHesabi {
+    private String kullaniciAdi;
+    private String sifreHash;
+    private double bakiye;
+
+    public KullaniciHesabi(String kullaniciAdi, String sifre, double baslangicBakiyesi) {
+        this.kullaniciAdi = kullaniciAdi;
+        this.sifreHash = generateHash(sifre); // Şifrenin hash'i tutulur
+        this.bakiye = baslangicBakiyesi;
+    }
+
+    // Getter metotları
+    public String getKullaniciAdi() {
+        return kullaniciAdi;
+    }
+
+    public double getBakiye() {
+        return bakiye;
+    }
+
+    // Setter veya iş mantığı içeren metotlar
+    public boolean sifreDegistir(String eskiSifre, String yeniSifre) {
+        if (this.sifreHash.equals(generateHash(eskiSifre))) {
+            this.sifreHash = generateHash(yeniSifre);
+            System.out.println("Şifre başarıyla değiştirildi.");
+            return true;
+        } else {
+            System.out.println("Eski şifre yanlış. Şifre değiştirme başarısız.");
+            return false;
+        }
+    }
+
+    public void paraYatir(double miktar) {
+        if (miktar > 0) {
+            bakiye += miktar;
+            System.out.println(miktar + " TL yatırıldı. Yeni bakiye: " + bakiye + " TL");
+        } else {
+            System.out.println("Geçersiz miktar. Para yatırma başarısız.");
+        }
+    }
+
+    public boolean paraCek(double miktar) {
+        if (miktar > 0 && bakiye >= miktar) {
+            bakiye -= miktar;
+            System.out.println(miktar + " TL çekildi. Yeni bakiye: " + bakiye + " TL");
+            return true;
+        } else if (miktar <= 0) {
+            System.out.println("Geçersiz miktar. Para çekme başarısız.");
+            return false;
+        } else {
+            System.out.println("Yetersiz bakiye. Para çekme başarısız.");
+            return false;
+        }
+    }
+
+    // Güvenlik için basit bir hash fonksiyonu (gerçek uygulamada daha karmaşık olmalı)
+    private String generateHash(String input) {
+        return String.valueOf(input.hashCode());
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class ZorKapsullemeOrnek {
+    public static void main(String[] args) {
+        KullaniciHesabi user = new KullaniciHesabi("ahmet.yilmaz", "12345", 1000.0);
+
+        System.out.println("Kullanıcı: " + user.getKullaniciAdi() + ", Bakiye: " + user.getBakiye() + " TL");
+
+        user.paraYatir(200.0);
+        user.paraCek(150.0);
+        user.sifreDegistir("yanlisSifre", "yeniSifre123");
+        user.sifreDegistir("12345", "yeniSifre123");
+        user.paraCek(2000.0); // Yetersiz bakiye
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>Kullanıcı: ahmet.yilmaz, Bakiye: 1000.0 TL
+200.0 TL yatırıldı. Yeni bakiye: 1200.0 TL
+Eski şifre yanlış. Şifre değiştirme başarısız.
+Şifre başarıyla değiştirildi.
+Yetersiz bakiye. Para çekme başarısız.</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Abstraction Section -->
+        <section id="abstraction" class="mb-5">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h2 class="mb-0">Abstraction (Soyutlama)</h2>
+                </div>
+                <div class="card-body">
+                    <p class="lead">Abstraction, karmaşık sistemlerin detaylarını gizleyerek sadece önemli özelliklerini gösterme prensibidir. Java\'da soyut sınıflar ve arayüzler (interfaces) aracılığıyla uygulanır.</p>
+                    
+                    <div class="bg-light p-4 rounded">
+                        <h4>Kolay Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>abstract class Sekil {
+    // Soyut metot
+    public abstract double alanHesapla();
+
+    // Normal metot
+    public void bilgiGoster() {
+        System.out.println("Bu bir şekildir.");
+    }
+}
+
+class Daire extends Sekil {
+    private double yaricap;
+
+    public Daire(double yaricap) {
+        this.yaricap = yaricap;
+    }
+
+    @Override
+    public double alanHesapla() {
+        return Math.PI * yaricap * yaricap;
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class SoyutlamaOrnek {
+    public static void main(String[] args) {
+        // Sekil sekil = new Sekil(); // Hata: Soyut sınıf örneklenemez
+
+        Daire daire = new Daire(5);
+        System.out.println("Daire Alanı: " + daire.alanHesapla());
+        daire.bilgiGoster();
+
+        // Polymorphism ile kullanma
+        Sekil soyutDaire = new Daire(7);
+        System.out.println("Soyut Daire Alanı: " + soyutDaire.alanHesapla());
+        soyutDaire.bilgiGoster();
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>Daire Alanı: 78.53981633974483
+Bu bir şekildir.
+Soyut Daire Alanı: 153.93804002589985
+Bu bir şekildir.</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-4">
+                        <h4>Orta Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>abstract class SekilGeometrik {
+    public abstract double alanHesapla();
+    public abstract double cevreHesapla();
+
+    public String getTip() {
+        return "Bilinmeyen Şekil";
+    }
+}
+
+class Kare extends SekilGeometrik {
+    private double kenar;
+
+    public Kare(double kenar) {
+        this.kenar = kenar;
+    }
+
+    @Override
+    public double alanHesapla() {
+        return kenar * kenar;
+    }
+
+    @Override
+    public double cevreHesapla() {
+        return 4 * kenar;
+    }
+
+    @Override
+    public String getTip() {
+        return "Kare";
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class OrtaSoyutlamaOrnek {
+    public static void main(String[] args) {
+        SekilGeometrik kare = new Kare(6);
+        System.out.println(kare.getTip() + " Alanı: " + kare.alanHesapla());
+        System.out.println(kare.getTip() + " Çevresi: " + kare.cevreHesapla());
+
+        // Yeni bir şekil eklendiğinde, sadece o sınıfı implement etmek yeterli olur.
+        // Örneğin, bir Ucgen sınıfı eklenebilir.
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>Kare Alanı: 36.0
+Kare Çevresi: 24.0</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-4">
+                        <h4>Zor Örnek (Sınıf Tanımı)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>abstract class PaymentMethod {
+    protected String paymentType;
+
+    public PaymentMethod(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public abstract void processPayment(double amount);
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+}
+
+class CreditCardPayment extends PaymentMethod {
+    private String cardNumber;
+    private String cardHolderName;
+
+    public CreditCardPayment(String cardNumber, String cardHolderName) {
+        super("Kredi Kartı");
+        this.cardNumber = cardNumber;
+        this.cardHolderName = cardHolderName;
+    }
+
+    @Override
+    public void processPayment(double amount) {
+        System.out.println(amount + " TL kredi kartı ile ödeniyor. Kart Numarası: ****" + cardNumber.substring(cardNumber.length() - 4));
+        // Gerçek ödeme işlemleri burada yapılır
+    }
+
+    public void generateReceipt() {
+        System.out.println("Kredi kartı slipleri oluşturuldu.");
+    }
+}
+
+class BankTransferPayment extends PaymentMethod {
+    private String bankAccountNumber;
+    private String swiftCode;
+
+    public BankTransferPayment(String bankAccountNumber, String swiftCode) {
+        super("Banka Transferi");
+        this.bankAccountNumber = bankAccountNumber;
+        this.swiftCode = swiftCode;
+    }
+
+    @Override
+    public void processPayment(double amount) {
+        System.out.println(amount + " TL banka transferi ile ödeniyor. Hesap No: " + bankAccountNumber);
+        // Gerçek transfer işlemleri burada yapılır
+    }
+
+    public void notifyBank() {
+        System.out.println("Banka bilgilendirildi.");
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Kullanım Örneği (Main Metodu)</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>public class ZorSoyutlamaOrnek {
+    public static void main(String[] args) {
+        PaymentMethod creditCard = new CreditCardPayment("1234-5678-9012-3456", "Ali Can");
+        creditCard.processPayment(250.75);
+        // creditCard.generateReceipt(); // Hata: PaymentMethod referansı üzerinden erişilemez
+
+        PaymentMethod bankTransfer = new BankTransferPayment("TR987654321", "DENIZBANKTR");
+        bankTransfer.processPayment(1200.00);
+
+        System.out.println("\nÖdeme Tipleri:");
+        System.out.println("Kredi Kartı Ödeme Tipi: " + creditCard.getPaymentType());
+        System.out.println("Banka Transferi Ödeme Tipi: " + bankTransfer.getPaymentType());
+    }
+}</code></pre>
+                    </div>
+                    <div class="bg-light p-4 rounded mt-3">
+                        <h4>Çıktı:</h4>
+                        <pre class="bg-dark text-white p-3 rounded"><code>250.75 TL kredi kartı ile ödeniyor. Kart Numarası: ****3456
+1200.0 TL banka transferi ile ödeniyor. Hesap No: TR987654321
+
+Ödeme Tipleri:
+Kredi Kartı Ödeme Tipi: Kredi Kartı
+Banka Transferi Ödeme Tipi: Banka Transferi</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exceptions Section -->
+        <section id="exceptions" class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="mb-4">İstisna İşleme (Exception Handling)</h2>
+                        <p class="lead">Program çalışırken oluşabilecek hataları yönetmek için kullanılır.</p>
+                        
+                        <div class="bg-light p-4 rounded">
+                            <h4>Kolay Örnek (Sınıf Tanımı)</h4>
+                            <pre class="bg-dark text-white p-3 rounded"><code>public class BolmeIslemi {
+    public double bol(int sayi1, int sayi2) {
+        try {
+            return sayi1 / sayi2;
+        } catch (ArithmeticException e) {
+            System.out.println("Hata: Sıfıra bölme hatası!");
+            return 0.0;
+        }
+    }
+}</code></pre>
+                        </div>
+                        <div class="bg-light p-4 rounded mt-3">
+                            <h4>Kullanım Örneği (Main Metodu)</h4>
+                            <pre class="bg-dark text-white p-3 rounded"><code>public class IstisnaIslemeOrnek {
+    public static void main(String[] args) {
+        BolmeIslemi bolme = new BolmeIslemi();
+        System.out.println("10 / 2 = " + bolme.bol(10, 2));
+        System.out.println("10 / 0 = " + bolme.bol(10, 0));
+    }
+}</code></pre>
+                        </div>
+                        <div class="bg-light p-4 rounded mt-3">
+                            <h4>Çıktı:</h4>
+                            <pre class="bg-dark text-white p-3 rounded"><code>10 / 2 = 5.0
+Hata: Sıfıra bölme hatası!
+10 / 0 = 0.0</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Project Section -->
+        <section id="final-project" class="py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="mb-4">Final Çalışması: Kütüphane Yönetim Sistemi</h2>
+                        <p class="lead">Bu örnek, öğrendiğimiz tüm OOP kavramlarını bir arada kullanarak basit bir kütüphane yönetim sistemi oluşturur.</p>
+                        
+                        <div class="bg-light p-4 rounded">
+                            <h4>Sınıf Tanımları</h4>
+                            <pre class="bg-dark text-white p-3 rounded"><code>// Soyutlama (Abstraction): Temel Kitap sınıfı, soyut bir metot (getKitapTuru) içerir ve alt sınıfların bu metodu implement etmesini zorlar.
+// Kapsülleme (Encapsulation): 'protected' erişim belirleyiciler ile alanları korur ve 'public' getter/setter metotları ile kontrollü erişim sağlar.
+abstract class Kitap {
+    protected String isim;
+    protected String yazar;
+    protected int sayfaSayisi;
+    protected boolean oduncAlinabilir;
+
+    public Kitap(String isim, String yazar, int sayfaSayisi) {
+        this.isim = isim;
+        this.yazar = yazar;
+        this.sayfaSayisi = sayfaSayisi;
+        this.oduncAlinabilir = true;
+    }
+
+    // Soyut metot: Tüm türetilmiş sınıflar bu metodu kendi özel tanımlamalarıyla sağlamalıdır.
+    public abstract String getKitapTuru();
+
+    // Kapsülleme: Alanlara kontrollü erişim sağlayan getter ve setter metotları
+    public String getIsim() { return isim; }
+    public String getYazar() { return yazar; }
+    public int getSayfaSayisi() { return sayfaSayisi; }
+    public boolean isOduncAlinabilir() { return oduncAlinabilir; }
+    public void setOduncAlinabilir(boolean oduncAlinabilir) {
+        this.oduncAlinabilir = oduncAlinabilir;
+    }
+}
+
+// Kalıtım (Inheritance): Roman sınıfı, Kitap sınıfından kalıtım yoluyla türetilir.
+// Metot Ezme (Method Overriding): getKitapTuru metodu, Roman sınıfına özgü bir şekilde yeniden tanımlanır.
+class Roman extends Kitap {
+    private String tur;
+
+    public Roman(String isim, String yazar, int sayfaSayisi, String tur) {
+        super(isim, yazar, sayfaSayisi);
+        this.tur = tur;
+    }
+
+    // Metot Ezme (Override): Üst sınıftaki soyut metodu kendi özel implementasyonuyla ezer.
+    @Override
+    public String getKitapTuru() {
+        return "Roman - " + tur;
+    }
+}
+
+// Kalıtım (Inheritance): DersKitabi sınıfı da Kitap sınıfından kalıtım yoluyla türetilir.
+// Metot Ezme (Method Overriding): getKitapTuru metodu, DersKitabi sınıfına özgü bir şekilde yeniden tanımlanır.
+class DersKitabi extends Kitap {
+    private String ders;
+
+    public DersKitabi(String isim, String yazar, int sayfaSayisi, String ders) {
+        super(isim, yazar, sayfaSayisi);
+        this.ders = ders;
+    }
+
+    // Metot Ezme (Override): Üst sınıftaki soyut metodu kendi özel implementasyonuyla ezer.
+    @Override
+    public String getKitapTuru() {
+        return "Ders Kitabı - " + ders;
+    }
+}
+
+// Kapsülleme (Encapsulation): Kütüphane sınıfı, kitaplar listesini kendi içinde yönetir.
+class Kutuphane {
+    private List<Kitap> kitaplar;
+    private String isim;
+
+    public Kutuphane(String isim) {
+        this.isim = isim;
+        this.kitaplar = new ArrayList<>();
+    }
+
+    // Metot Aşırı Yükleme (Method Overloading): Aynı isimde iki farklı kitapEkle metodu.
+    // Biri tek bir kitap eklerken, diğeri bir liste dolusu kitap ekler.
+    public void kitapEkle(Kitap kitap) {
+        kitaplar.add(kitap);
+        System.out.println(kitap.getIsim() + " kütüphaneye eklendi.");
+    }
+
+    public void kitapEkle(List<Kitap> yeniKitaplar) {
+        kitaplar.addAll(yeniKitaplar);
+        System.out.println(yeniKitaplar.size() + " kitap kütüphaneye eklendi.");
+    }
+
+    // Çok Biçimlilik (Polymorphism): 'Kitap' tipinde bir liste üzerinden farklı türdeki kitaplara (Roman, DersKitabi) erişim.
+    // Her kitap nesnesinin getKitapTuru() metodu, kendi gerçek tipine göre çağrılır.
+    public void kitaplariListele() {
+        System.out.println("\n" + isim + " Kütüphanesi - Kitap Listesi:");
+        for (Kitap kitap : kitaplar) { // Kitap referansı, Roman veya DersKitabi nesnelerini tutabilir.
+            System.out.println("Kitap: " + kitap.getIsim() + 
+                             ", Yazar: " + kitap.getYazar() + 
+                             ", Tür: " + kitap.getKitapTuru()); // Polymorphic metot çağrısı
+        }
+    }
+
+    // İstisna İşleme (Exception Handling): try-catch blokları ile olası hataları (kitap bulunamadı, zaten ödünç alınmış) yönetir.
+    public void kitapOduncAl(String kitapIsmi) {
+        try {
+            Kitap kitap = kitaplar.stream()
+                                .filter(k -> k.getIsim().equals(kitapIsmi))
+                                .findFirst()
+                                .orElseThrow(() -> new Exception("Kitap bulunamadı: " + kitapIsmi));
+
+            if (!kitap.isOduncAlinabilir()) {
+                throw new Exception("Kitap zaten ödünç alınmış: " + kitapIsmi);
+            }
+
+            kitap.setOduncAlinabilir(false);
+            System.out.println(kitapIsmi + " başarıyla ödünç alındı.");
+        } catch (Exception e) {
+            System.out.println("Hata: " + e.getMessage());
+        }
+    }
+}</code></pre>
+                        </div>
+                        <div class="bg-light p-4 rounded mt-3">
+                            <h4>Kullanım Örneği (Main Metodu)</h4>
+                            <pre class="bg-dark text-white p-3 rounded"><code>public class KutuphaneYonetimSistemi {
+    public static void main(String[] args) {
+        // Kütüphane oluştur
+        Kutuphane kutuphane = new Kutuphane("Merkez Kütüphane");
+
+        // Romanlar oluştur
+        Roman roman1 = new Roman("Suç ve Ceza", "Dostoyevski", 671, "Psikolojik");
+        Roman roman2 = new Roman("1984", "George Orwell", 328, "Distopik");
+
+        // Ders kitapları oluştur
+        DersKitabi dersKitabi1 = new DersKitabi("Java Programlama", "Ahmet Yılmaz", 450, "Programlama");
+        DersKitabi dersKitabi2 = new DersKitabi("Veri Yapıları", "Mehmet Demir", 380, "Bilgisayar Mühendisliği");
+
+        // Kitapları kütüphaneye ekle
+        kutuphane.kitapEkle(roman1);
+        kutuphane.kitapEkle(roman2);
+        kutuphane.kitapEkle(dersKitabi1);
+        kutuphane.kitapEkle(dersKitabi2);
+
+        // Kitapları listele
+        kutuphane.kitaplariListele();
+
+        // Kitap ödünç alma işlemleri
+        kutuphane.kitapOduncAl("Suç ve Ceza");
+        kutuphane.kitapOduncAl("Suç ve Ceza"); // Aynı kitabı tekrar ödünç alma denemesi
+        kutuphane.kitapOduncAl("Bilinmeyen Kitap"); // Olmayan kitabı ödünç alma denemesi
+    }
+}</code></pre>
+                        </div>
+                        <div class="bg-light p-4 rounded mt-3">
+                            <h4>Çıktı:</h4>
+                            <pre class="bg-dark text-white p-3 rounded"><code>Suç ve Ceza kütüphaneye eklendi.
+1984 kütüphaneye eklendi.
+Java Programlama kütüphaneye eklendi.
+Veri Yapıları kütüphaneye eklendi.
+
+Merkez Kütüphane Kütüphanesi - Kitap Listesi:
+Kitap: Suç ve Ceza, Yazar: Dostoyevski, Tür: Roman - Psikolojik
+Kitap: 1984, Yazar: George Orwell, Tür: Roman - Distopik
+Kitap: Java Programlama, Yazar: Ahmet Yılmaz, Tür: Ders Kitabı - Programlama
+Kitap: Veri Yapıları, Yazar: Mehmet Demir, Tür: Ders Kitabı - Bilgisayar Mühendisliği
+
+Suç ve Ceza başarıyla ödünç alındı.
+Hata: Kitap zaten ödünç alınmış: Suç ve Ceza
+Hata: Kitap bulunamadı: Bilinmeyen Kitap</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Java OOP Öğrenme Platformu</h5>
+                    <p>Nesne Yönelimli Programlama kavramlarını öğrenmek için en iyi kaynak.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
