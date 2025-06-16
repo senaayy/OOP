@@ -198,6 +198,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#keywords">Anahtar Kelimeler</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#practice">Pratik Alanı</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -368,6 +371,56 @@ Kare çiziliyor...
 Üçgen çiziliyor...
 Geçersiz şekil tipi!</code></pre>
                     </div>
+                    <!-- Çoktan Seçmeli Test: Method Overriding -->
+                    <div class="bg-white p-4 rounded mt-4 border">
+                        <h4 class="mb-3">Konu Testi: Method Overriding</h4>
+                        <div class="mb-4">
+                            <strong>Soru 1:</strong> Aşağıdaki kodun çıktısı nedir?<br>
+                            <pre class="bg-light p-2 rounded"><code>class Hayvan {
+    void sesCikar() { System.out.println("Hayvan sesi"); }
+}
+class Kedi extends Hayvan {
+    @Override
+    void sesCikar() { System.out.println("Miyav!"); }
+}
+public class Test {
+    public static void main(String[] args) {
+        Hayvan h = new Kedi();
+        h.sesCikar();
+    }
+}</code></pre>
+                            <ul class="list-unstyled">
+                                <li>A) Hayvan sesi</li>
+                                <li>B) Miyav!</li>
+                                <li>C) Derleme hatası</li>
+                                <li>D) Hiçbir şey yazmaz</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [B]</span><br>
+                            <span class="text-info">❗ Açıklama: Referans tipi Hayvan olsa da, nesne Kedi olduğu için override edilen metot çalışır.</span>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Soru 2:</strong> Method overriding ile ilgili aşağıdakilerden hangisi yanlıştır?<br>
+                            <ul class="list-unstyled">
+                                <li>A) Alt sınıf, üst sınıftaki metodu aynı imzayla yeniden yazabilir.</li>
+                                <li>B) Overriding yapılan metot, alt sınıfta farklı parametrelerle tanımlanabilir.</li>
+                                <li>C) @Override notasyonu, override edilen metotlarda kullanılabilir.</li>
+                                <li>D) Overriding, çok biçimliliğin temelini oluşturur.</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [B]</span><br>
+                            <span class="text-info">❗ Açıklama: Farklı parametreyle yazılırsa overriding değil, overloading olur.</span>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Soru 3:</strong> Aşağıdakilerden hangisi method overriding için gereklidir?<br>
+                            <ul class="list-unstyled">
+                                <li>A) Metotlar static olmalı</li>
+                                <li>B) Alt sınıf, üst sınıfı miras almalı</li>
+                                <li>C) Metotlar final olmalı</li>
+                                <li>D) Sadece constructor'lar override edilebilir</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [B]</span><br>
+                            <span class="text-info">❗ Açıklama: Overriding için kalıtım (inheritance) şarttır.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -496,6 +549,54 @@ Geçersiz şekil tipi!</code></pre>
 Fazla Mesai ile Maaş: 9500.0
 Prim ile Maaş: 9200.0
 Bonus ile Maaş: 9000.0</code></pre>
+                    </div>
+                    <!-- Çoktan Seçmeli Test: Method Overloading -->
+                    <div class="bg-white p-4 rounded mt-4 border">
+                        <h4 class="mb-3">Konu Testi: Method Overloading</h4>
+                        <div class="mb-4">
+                            <strong>Soru 1:</strong> Aşağıdaki kodun çıktısı nedir?<br>
+                            <pre class="bg-light p-2 rounded"><code>class Hesap {
+    int topla(int a, int b) { return a + b; }
+    double topla(double a, double b) { return a + b; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Hesap h = new Hesap();
+        System.out.println(h.topla(3, 4));
+        System.out.println(h.topla(2.5, 3.5));
+    }
+}</code></pre>
+                            <ul class="list-unstyled">
+                                <li>A) 7 ve 6.0</li>
+                                <li>B) 7 ve 5.0</li>
+                                <li>C) 3 ve 2.5</li>
+                                <li>D) Derleme hatası</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [A]</span><br>
+                            <span class="text-info">❗ Açıklama: int ve double parametrelerle iki farklı topla metodu çağrılır.</span>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Soru 2:</strong> Method overloading ile ilgili aşağıdakilerden hangisi yanlıştır?<br>
+                            <ul class="list-unstyled">
+                                <li>A) Aynı isimli metotlar farklı parametrelerle tanımlanabilir.</li>
+                                <li>B) Overloading için dönüş tipi farklı olmalıdır.</li>
+                                <li>C) Overloading, kodun okunabilirliğini artırır.</li>
+                                <li>D) Overloading, compile-time (derleme zamanı) polimorfizmdir.</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [B]</span><br>
+                            <span class="text-info">❗ Açıklama: Overloading için dönüş tipinin farklı olması gerekmez, parametreler farklı olmalı.</span>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Soru 3:</strong> Aşağıdakilerden hangisi method overloading örneğidir?<br>
+                            <ul class="list-unstyled">
+                                <li>A) void yazdir() ve void yazdir()</li>
+                                <li>B) int topla(int a, int b) ve int topla(int x, int y)</li>
+                                <li>C) double topla(double a, double b) ve int topla(int a, int b)</li>
+                                <li>D) void yazdir(String s) ve void yazdir(int s)</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [D]</span><br>
+                            <span class="text-info">❗ Açıklama: Aynı isimli metotlar, farklı parametre tipleriyle tanımlanırsa overloading olur.</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -677,6 +778,58 @@ Veri kaydetme işlemi yapılıyor.
 Raporlama işlemi yapılıyor.
 Hiçbir komut ayarlanmadı.</code></pre>
                     </div>
+                    <!-- Çoktan Seçmeli Test: Polymorphism -->
+                    <div class="bg-white p-4 rounded mt-4 border">
+                        <h4 class="mb-3">Konu Testi: Polymorphism (Çok Biçimlilik)</h4>
+                        <div class="mb-4">
+                            <strong>Soru 1:</strong> Aşağıdaki kodun çıktısı nedir?<br>
+                            <pre class="bg-light p-2 rounded"><code>interface Sekil {
+    void ciz();
+}
+class Daire implements Sekil {
+    public void ciz() { System.out.println("Daire çizildi"); }
+}
+class Kare implements Sekil {
+    public void ciz() { System.out.println("Kare çizildi"); }
+}
+public class Test {
+    public static void main(String[] args) {
+        Sekil s = new Kare();
+        s.ciz();
+    }
+}</code></pre>
+                            <ul class="list-unstyled">
+                                <li>A) Daire çizildi</li>
+                                <li>B) Kare çizildi</li>
+                                <li>C) Derleme hatası</li>
+                                <li>D) Hiçbir şey yazmaz</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [B]</span><br>
+                            <span class="text-info">❗ Açıklama: Referans tipi Sekil olsa da, nesne Kare olduğu için Kare'nin ciz() metodu çalışır.</span>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Soru 2:</strong> Polymorphism ile ilgili aşağıdakilerden hangisi yanlıştır?<br>
+                            <ul class="list-unstyled">
+                                <li>A) Aynı arayüzü uygulayan farklı sınıflar, aynı metodu farklı şekilde gerçekleştirebilir.</li>
+                                <li>B) Polymorphism, kodun esnekliğini ve genişletilebilirliğini artırır.</li>
+                                <li>C) Polymorphism sadece compile-time'da (derleme zamanı) gerçekleşir.</li>
+                                <li>D) Polymorphism, çok biçimlilik anlamına gelir.</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [C]</span><br>
+                            <span class="text-info">❗ Açıklama: Polymorphism, run-time'da (çalışma zamanı) da gerçekleşir.</span>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Soru 3:</strong> Aşağıdakilerden hangisi polymorphism örneğidir?<br>
+                            <ul class="list-unstyled">
+                                <li>A) Bir sınıfta birden fazla constructor olması</li>
+                                <li>B) Bir arayüzü uygulayan farklı sınıfların, aynı metodu farklı şekilde gerçekleştirmesi</li>
+                                <li>C) Sadece static metotların kullanılması</li>
+                                <li>D) Sadece final değişkenlerin kullanılması</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [B]</span><br>
+                            <span class="text-info">❗ Açıklama: Farklı sınıflar aynı arayüzü farklı şekilde uygularsa polymorphism olur.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -719,6 +872,21 @@ class Yazilimci extends Calisan {
         super.bilgileriGoster();
         System.out.println("Programlama Dili: " + programlamaDili);
     }
+}
+
+class Mudur extends Yazilimci {
+    private String sirketAdi;
+
+    public Mudur(String isim, double maas, String programlamaDili, String sirketAdi) {
+        super(isim, maas, programlamaDili);
+        this.sirketAdi = sirketAdi;
+    }
+
+    @Override
+    public void bilgileriGoster() {
+        super.bilgileriGoster();
+        System.out.println("Şirket Adı: " + sirketAdi);
+    }
 }</code></pre>
                     </div>
                     <div class="bg-light p-4 rounded mt-3">
@@ -730,6 +898,9 @@ class Yazilimci extends Calisan {
 
         Yazilimci yazilimci = new Yazilimci("Ayşe", 7000, "Java");
         yazilimci.bilgileriGoster();
+
+        Mudur mudur = new Mudur("Koray", 9000, "Java", "ABC Şirketi");
+        mudur.bilgileriGoster();
     }
 }</code></pre>
                     </div>
@@ -737,7 +908,8 @@ class Yazilimci extends Calisan {
                         <h4>Çıktı:</h4>
                         <pre class="bg-dark text-white p-3 rounded"><code>İsim: Ali, Maaş: 5000.0
 İsim: Ayşe, Maaş: 7000.0
-Programlama Dili: Java</code></pre>
+Programlama Dili: Java
+Şirket Adı: ABC Şirketi</code></pre>
                     </div>
                     <div class="bg-light p-4 rounded mt-4">
                         <h4>Orta Örnek (Sınıf Tanımı)</h4>
@@ -905,6 +1077,56 @@ Marka: Dell, Model: XPS 15
 Dell XPS 15 (Windows) başlatılıyor...
 Visual Studio Code programı Intel i7 işlemcili bilgisayara yükleniyor.
 Dell XPS 15 (Windows) kapatılıyor.</code></pre>
+                    </div>
+                    <!-- Çoktan Seçmeli Test: Inheritance -->
+                    <div class="bg-white p-4 rounded mt-4 border">
+                        <h4 class="mb-3">Konu Testi: Inheritance (Kalıtım)</h4>
+                        <div class="mb-4">
+                            <strong>Soru 1:</strong> Aşağıdaki kodun çıktısı nedir?<br>
+                            <pre class="bg-light p-2 rounded"><code>class Hayvan {
+    void sesCikar() { System.out.println("Hayvan sesi"); }
+}
+class Kopek extends Hayvan {
+    void havla() { System.out.println("Hav hav!"); }
+}
+public class Test {
+    public static void main(String[] args) {
+        Kopek k = new Kopek();
+        k.sesCikar();
+        k.havla();
+    }
+}</code></pre>
+                            <ul class="list-unstyled">
+                                <li>A) Hayvan sesi</li>
+                                <li>B) Hav hav!</li>
+                                <li>C) Hayvan sesi ve Hav hav!</li>
+                                <li>D) Derleme hatası</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [C]</span><br>
+                            <span class="text-info">❗ Açıklama: Kopek, Hayvan'dan miras aldığı için hem sesCikar hem de havla metodunu kullanabilir.</span>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Soru 2:</strong> Inheritance ile ilgili aşağıdakilerden hangisi yanlıştır?<br>
+                            <ul class="list-unstyled">
+                                <li>A) Bir sınıf birden fazla sınıftan miras alabilir.</li>
+                                <li>B) Alt sınıf, üst sınıfın public metotlarına erişebilir.</li>
+                                <li>C) Inheritance, kod tekrarını azaltır.</li>
+                                <li>D) Alt sınıf, üst sınıfın protected değişkenlerine erişebilir.</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [A]</span><br>
+                            <span class="text-info">❗ Açıklama: Java'da çoklu kalıtım (multiple inheritance) yoktur, bir sınıf yalnızca bir sınıftan miras alabilir.</span>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Soru 3:</strong> Aşağıdakilerden hangisi inheritance'ın avantajlarından biri değildir?<br>
+                            <ul class="list-unstyled">
+                                <li>A) Kod tekrarını azaltır</li>
+                                <li>B) Kodun bakımını kolaylaştırır</li>
+                                <li>C) Tüm sınıfların aynı özelliklere sahip olmasını zorunlu kılar</li>
+                                <li>D) Kodun yeniden kullanılabilirliğini artırır</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [C]</span><br>
+                            <span class="text-info">❗ Açıklama: Inheritance, tüm sınıfların aynı özelliklere sahip olmasını zorunlu kılmaz.</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1118,6 +1340,53 @@ Eski şifre yanlış. Şifre değiştirme başarısız.
 Şifre başarıyla değiştirildi.
 Yetersiz bakiye. Para çekme başarısız.</code></pre>
                     </div>
+                    <!-- Çoktan Seçmeli Test: Encapsulation -->
+                    <div class="bg-white p-4 rounded mt-4 border">
+                        <h4 class="mb-3">Konu Testi: Encapsulation (Kapsülleme)</h4>
+                        <div class="mb-4">
+                            <strong>Soru 1:</strong> Aşağıdaki kodun çıktısı nedir?<br>
+                            <pre class="bg-light p-2 rounded"><code>public class Ogrenci {
+    private String ad;
+    public void setAd(String ad) { this.ad = ad; }
+    public String getAd() { return ad; }
+    public static void main(String[] args) {
+        Ogrenci o = new Ogrenci();
+        o.setAd("Ali");
+        System.out.println(o.getAd());
+    }
+}</code></pre>
+                            <ul class="list-unstyled">
+                                <li>A) null</li>
+                                <li>B) Ali</li>
+                                <li>C) Derleme hatası</li>
+                                <li>D) Hiçbir şey yazmaz</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [B]</span><br>
+                            <span class="text-info">❗ Açıklama: setAd ile "Ali" atanır, getAd ile ekrana yazılır.</span>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Soru 2:</strong> Encapsulation ile ilgili aşağıdakilerden hangisi yanlıştır?<br>
+                            <ul class="list-unstyled">
+                                <li>A) Sınıfın alanları genellikle private yapılır.</li>
+                                <li>B) Alanlara doğrudan erişmek yerine getter/setter kullanılır.</li>
+                                <li>C) Encapsulation, veriyi korumaya yardımcı olur.</li>
+                                <li>D) Tüm alanlar public olursa encapsulation sağlanmış olur.</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [D]</span><br>
+                            <span class="text-info">❗ Açıklama: Tüm alanlar public olursa encapsulation sağlanmaz, veri koruması kaybolur.</span>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Soru 3:</strong> Aşağıdakilerden hangisi encapsulation'ın avantajlarından biri değildir?<br>
+                            <ul class="list-unstyled">
+                                <li>A) Verinin dışarıdan kontrolsüz değiştirilmesini engeller</li>
+                                <li>B) Kodun bakımını kolaylaştırır</li>
+                                <li>C) Sınıfın iç yapısını tamamen dışarı açar</li>
+                                <li>D) Hatalı veri girişini önleyebilir</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [C]</span><br>
+                            <span class="text-info">❗ Açıklama: Encapsulation, iç yapının dışarı açılmasını değil, gizlenmesini sağlar.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1320,6 +1589,57 @@ class BankTransferPayment extends PaymentMethod {
 Kredi Kartı Ödeme Tipi: Kredi Kartı
 Banka Transferi Ödeme Tipi: Banka Transferi</code></pre>
                     </div>
+                    <!-- Çoktan Seçmeli Test: Abstraction -->
+                    <div class="bg-white p-4 rounded mt-4 border">
+                        <h4 class="mb-3">Konu Testi: Abstraction (Soyutlama)</h4>
+                        <div class="mb-4">
+                            <strong>Soru 1:</strong> Aşağıdaki kodun çıktısı nedir?<br>
+                            <pre class="bg-light p-2 rounded"><code>abstract class Sekil {
+    public abstract void ciz();
+    public void bilgi() { System.out.println("Bu bir şekildir."); }
+}
+class Daire extends Sekil {
+    public void ciz() { System.out.println("Daire çizildi"); }
+}
+public class Test {
+    public static void main(String[] args) {
+        Sekil s = new Daire();
+        s.ciz();
+        s.bilgi();
+    }
+}</code></pre>
+                            <ul class="list-unstyled">
+                                <li>A) Daire çizildi</li>
+                                <li>B) Bu bir şekildir.</li>
+                                <li>C) Daire çizildi ve Bu bir şekildir.</li>
+                                <li>D) Derleme hatası</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [C]</span><br>
+                            <span class="text-info">❗ Açıklama: Hem override edilen hem de soyut olmayan metot çalışır.</span>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Soru 2:</strong> Abstraction ile ilgili aşağıdakilerden hangisi yanlıştır?<br>
+                            <ul class="list-unstyled">
+                                <li>A) Soyut sınıflardan nesne oluşturulamaz.</li>
+                                <li>B) Soyut sınıflar hem soyut hem somut metot içerebilir.</li>
+                                <li>C) Soyut metotlar gövdesizdir.</li>
+                                <li>D) Soyut sınıflar sadece arayüz olarak kullanılır, başka işlevi yoktur.</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [D]</span><br>
+                            <span class="text-info">❗ Açıklama: Soyut sınıflar arayüzden fazlasını yapabilir, gövdeli metotlar da içerebilir.</span>
+                        </div>
+                        <div class="mb-4">
+                            <strong>Soru 3:</strong> Aşağıdakilerden hangisi abstraction'ın avantajlarından biri değildir?<br>
+                            <ul class="list-unstyled">
+                                <li>A) Karmaşıklığı azaltır</li>
+                                <li>B) Gereksiz detayları gizler</li>
+                                <li>C) Tüm metotların gövdeli olmasını zorunlu kılar</li>
+                                <li>D) Kodun okunabilirliğini artırır</li>
+                            </ul>
+                            <span class="text-success">✅ Doğru cevap: [C]</span><br>
+                            <span class="text-info">❗ Açıklama: Abstraction, metotların gövdeli olmasını zorunlu kılmaz, aksine soyut metotlar gövdesizdir.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1360,6 +1680,52 @@ Banka Transferi Ödeme Tipi: Banka Transferi</code></pre>
                             <pre class="bg-dark text-white p-3 rounded"><code>10 / 2 = 5.0
 Hata: Sıfıra bölme hatası!
 10 / 0 = 0.0</code></pre>
+                        </div>
+                        <!-- Çoktan Seçmeli Test: Exceptions -->
+                        <div class="bg-white p-4 rounded mt-4 border">
+                            <h4 class="mb-3">Konu Testi: Exceptions (İstisna İşleme)</h4>
+                            <div class="mb-4">
+                                <strong>Soru 1:</strong> Aşağıdaki kodun çıktısı nedir?<br>
+                                <pre class="bg-light p-2 rounded"><code>public class Test {
+    public static void main(String[] args) {
+        try {
+            int x = 10 / 0;
+        } catch (ArithmeticException e) {
+            System.out.println("Hata: " + e.getMessage());
+        }
+    }
+}</code></pre>
+                                <ul class="list-unstyled">
+                                    <li>A) 0</li>
+                                    <li>B) Hata: / by zero</li>
+                                    <li>C) Derleme hatası</li>
+                                    <li>D) Hiçbir şey yazmaz</li>
+                                </ul>
+                                <span class="text-success">✅ Doğru cevap: [B]</span><br>
+                                <span class="text-info">❗ Açıklama: Sıfıra bölme hatası ArithmeticException fırlatır ve catch bloğu çalışır.</span>
+                    </div>
+                            <div class="mb-4">
+                                <strong>Soru 2:</strong> Exceptions ile ilgili aşağıdakilerden hangisi yanlıştır?<br>
+                                <ul class="list-unstyled">
+                                    <li>A) try-catch blokları hata yönetimi için kullanılır.</li>
+                                    <li>B) finally bloğu her zaman çalışır.</li>
+                                    <li>C) checked exceptions derleme zamanında kontrol edilir.</li>
+                                    <li>D) Sadece unchecked exceptions yakalanabilir.</li>
+                                </ul>
+                                <span class="text-success">✅ Doğru cevap: [D]</span><br>
+                                <span class="text-info">❗ Açıklama: Hem checked hem unchecked exceptions yakalanabilir.</span>
+                            </div>
+                            <div class="mb-4">
+                                <strong>Soru 3:</strong> Aşağıdakilerden hangisi exception handling'in avantajlarından biri değildir?<br>
+                                <ul class="list-unstyled">
+                                    <li>A) Programın beklenmedik şekilde durmasını engeller</li>
+                                    <li>B) Hataları yönetilebilir hale getirir</li>
+                                    <li>C) Kodun okunabilirliğini artırır</li>
+                                    <li>D) Hataları tamamen yok eder</li>
+                                </ul>
+                                <span class="text-success">✅ Doğru cevap: [D]</span><br>
+                                <span class="text-info">❗ Açıklama: Exception handling hataları yok etmez, yönetilebilir hale getirir.</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1466,11 +1832,11 @@ class Kutuphane {
         for (Kitap kitap : kitaplar) {
             if (kitap.getIsim().equals(kitapIsmi)) {
                 if (kitap.isOduncAlinabilir()) {
-                    kitap.setOduncAlinabilir(false);
-                    System.out.println(kitapIsmi + " başarıyla ödünç alındı.");
+            kitap.setOduncAlinabilir(false);
+            System.out.println(kitapIsmi + " başarıyla ödünç alındı.");
                 } else {
                     System.out.println("Hata: Kitap zaten ödünç alınmış: " + kitapIsmi);
-                }
+        }
                 return;
             }
         }
@@ -1697,7 +2063,7 @@ public class Kutuphane {
                                     <h3 class="mb-0">Super</h3>
                                 </div>
                                 <div class="card-body">
-                                    <p>Super anahtar kelimesi:</p>
+                                    <p><code><span class="text-danger">Super</span></code> anahtar kelimesi:</p>
                                     <ul>
                                         <li>Üst sınıfın constructor'ını çağırmak için</li>
                                         <li>Üst sınıfın metodlarına erişmek için</li>
@@ -1725,7 +2091,7 @@ public class Kutuphane {
                                     <h3 class="mb-0">This</h3>
                                 </div>
                                 <div class="card-body">
-                                    <p>This anahtar kelimesi:</p>
+                                    <p><code><span class="text-danger">This</span></code> anahtar kelimesi:</p>
                                     <ul>
                                         <li>Mevcut nesneye referans verir</li>
                                         <li>Constructor'da diğer constructor'ı çağırmak için</li>
@@ -1751,7 +2117,7 @@ public class Kutuphane {
                                     <h3 class="mb-0">Try</h3>
                                 </div>
                                 <div class="card-body">
-                                    <p>Try bloğu:</p>
+                                    <p><code><span class="text-danger">Try</span></code> bloğu:</p>
                                     <ul>
                                         <li>Hata oluşabilecek kodları içerir</li>
                                         <li>catch ile hata yakalanır</li>
@@ -1772,11 +2138,83 @@ public class Kutuphane {
                                 </div>
                             </div>
                         </div>
+                        <!-- Interface -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-primary text-white">
+                                    <h3 class="mb-0">Interface (Arayüz)</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p><code>Interface</code>, Java'da tam soyutlamayı sağlayan bir referans tipidir. Sadece soyut metotlar ve sabitler içerebilir. Bir sınıf birden fazla arayüzü <code>implement</code> edebilir, bu da Java'da çoklu kalıtımın bir yoludur.</p>
+                                    <div class="example-section">
+                                        <pre class="bg-dark text-white p-3 rounded"><code>interface Cizilebilir {
+    void ciz();
+}
+
+class Kare implements Cizilebilir {
+    @Override
+    public void ciz() {
+        System.out.println("Kare çizildi");
+    }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Abstract Class -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-primary text-white">
+                                    <h3 class="mb-0">Abstract Class (Soyut Sınıf)</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p><code>Abstract Class</code>, hem soyut metotlar (implementasyonu olmayan metotlar) hem de somut metotlar (implementasyonu olan metotlar) içerebilen bir sınıftır. Abstract sınıfların doğrudan nesnesi oluşturulamaz; miras alınmaları gerekir ve alt sınıflar soyut metotları implement etmelidir.</p>
+                                    <div class="example-section">
+                                        <pre class="bg-dark text-white p-3 rounded"><code>abstract class Hayvan {
+    public abstract void sesCikar();
+    public void yemekYe() {
+        System.out.println("Hayvan yemek yiyor.");
+    }
+}
+
+class Kedi extends Hayvan {
+    @Override
+    public void sesCikar() {
+        System.out.println("Miyav!");
+    }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Implement -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-primary text-white">
+                                    <h3 class="mb-0">Implement (Uygulama / Gerçekleme)</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p><code>Implement</code> anahtar kelimesi, bir sınıfın bir arayüzdeki metotları (davranışları) sağladığını belirtmek için kullanılır. Bir sınıf bir arayüzü implement ettiğinde, arayüzde tanımlanan tüm soyut metotları kendi içinde gerçeklemek zorundadır.</p>
+                                    <div class="example-section">
+                                        <pre class="bg-dark text-white p-3 rounded"><code>interface HareketEdebilir {
+    void hareketEt();
+}
+
+class Araba implements HareketEdebilir {
+    @Override
+    public void hareketEt() {
+        System.out.println("Araba hareket ediyor.");
+    }
+
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-
     </div>
 
     <!-- Footer -->
@@ -1897,7 +2335,7 @@ public class Kutuphane {
             feedback = '<div class="alert alert-danger">Cevabınız eksik veya hatalı.<br>Doğru cevap:<br><pre>' + practiceExamples[topic].answer + '</pre></div>';
         }
         document.getElementById('feedback').innerHTML = feedback;
-    });
+        });
     </script>
 </body>
 </html> 
