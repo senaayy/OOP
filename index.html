@@ -6,6 +6,7 @@
     <title>Java OOP Öğrenme Platformu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs2015.min.css">
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -141,6 +142,28 @@
         .scroll-to-top.visible {
             opacity: 1;
         }
+
+        /* VSCode Dark+ kod teması */
+        .vsc-dark-plus {
+            background: #1e1e1e !important;
+            color: #d4d4d4 !important;
+            border-radius: 6px;
+            padding: 16px;
+            font-size: 1rem;
+            overflow-x: auto;
+            margin: 16px 0;
+            line-height: 1.6;
+            box-shadow: 0 2px 8px #0002;
+            width: 100%;
+            box-sizing: border-box;
+            white-space: pre;
+        }
+        .vsc-dark-plus .keyword { color: #569CD6; }
+        .vsc-dark-plus .type { color: #4EC9B0; }
+        .vsc-dark-plus .string { color: #D69D85; }
+        .vsc-dark-plus .comment { color: #6A9955; }
+        .vsc-dark-plus .number { color: #B5CEA8; }
+        .vsc-dark-plus .function { color: #DCDCAA; }
     </style>
 </head>
 <body>
@@ -1346,7 +1369,7 @@ Hata: Sıfıra bölme hatası!
                         
                         <div class="bg-light p-4 rounded">
                             <h4>Sınıf Tanımları</h4>
-                            <pre class="bg-dark text-white p-3 rounded"><code>// Soyutlama (Abstraction): Temel Kitap sınıfı, soyut bir metot (getKitapTuru) içerir ve alt sınıfların bu metodu implement etmesini zorlar.
+                            <pre class="bg-dark text-white p-3 rounded vsc-dark-plus"><code>// Soyutlama (Abstraction): Temel Kitap sınıfı, soyut bir metot (getKitapTuru) içerir ve alt sınıfların bu metodu implement etmesini zorlar.
 // Kapsülleme (Encapsulation): 'protected' erişim belirleyiciler ile alanları korur ve 'public' getter/setter metotları ile kontrollü erişim sağlar.
 abstract class Kitap {
     protected String isim;
@@ -1463,7 +1486,7 @@ class Kutuphane {
                         </div>
                         <div class="bg-light p-4 rounded mt-3">
                             <h4>Kullanım Örneği (Main Metodu)</h4>
-                            <pre class="bg-dark text-white p-3 rounded"><code>public class KutuphaneYonetimSistemi {
+                            <pre class="bg-dark text-white p-3 rounded vsc-dark-plus"><code>public class KutuphaneYonetimSistemi {
     public static void main(String[] args) {
         // Kütüphane oluştur
         Kutuphane kutuphane = new Kutuphane("Merkez Kütüphane");
@@ -1494,7 +1517,7 @@ class Kutuphane {
                         </div>
                         <div class="bg-light p-4 rounded mt-3">
                             <h4>Çıktı:</h4>
-                            <pre class="bg-dark text-white p-3 rounded"><code>Suç ve Ceza kütüphaneye eklendi.
+                            <pre class="bg-dark text-white p-3 rounded vsc-dark-plus"><code>Suç ve Ceza kütüphaneye eklendi.
 1984 kütüphaneye eklendi.
 Java Programlama kütüphaneye eklendi.
 Veri Yapıları kütüphaneye eklendi.
@@ -1536,6 +1559,8 @@ Hata: Kitap bulunamadı: Bilinmeyen Kitap</code></pre>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1545,6 +1570,19 @@ Hata: Kitap bulunamadı: Bilinmeyen Kitap</code></pre>
                     behavior: 'smooth'
                 });
             });
+        });
+
+        function vscHighlight(code) {
+            return code
+                .replace(/(\/\/.*)/g, '<span class="comment">$1<\/span>')
+                .replace(/("(?:[^"\\]|\\.)*")/g, '<span class="string">$1<\/span>')
+                .replace(/\b(class|public|private|protected|static|void|int|double|float|boolean|new|return|if|else|for|while|abstract|extends|implements|interface|package|import|try|catch|finally|throw|throws|super|this)\b/g, '<span class="keyword">$1<\/span>')
+                .replace(/\b([A-Z][a-zA-Z0-9_]*)\b/g, '<span class="type">$1<\/span>')
+                .replace(/\b([0-9]+)\b/g, '<span class="number">$1<\/span>');
+        }
+        document.querySelectorAll('pre code').forEach(function(block) {
+            block.parentElement.classList.add('vsc-dark-plus');
+            block.innerHTML = vscHighlight(block.textContent);
         });
     </script>
 </body>
