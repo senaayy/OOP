@@ -526,6 +526,11 @@ class Dikdortgen implements Sekil {
         return en * boy;
     }
 }</code></pre>
+                    <div class="bg-light p-4 rounded mt-3 explanation-box">
+                        <h4>Açıklama: Interface ve Implement</h4>
+                        <p><strong>Interface (Arayüz):</strong> `interface Sekil` gibi tanımlanan arayüzler, bir sınıfın sahip olması gereken davranışları (metotları) belirler ancak bu metotların nasıl çalıştığını (implementasyonunu) sağlamaz. Tamamen soyut bir yapıdır.</p>
+                        <p><strong>Implement (Uygulama/Gerçekleme):</strong> `class Dikdortgen implements Sekil` ifadesi, `Dikdortgen` sınıfının `Sekil` arayüzünde tanımlanan tüm metotları kendi içinde gerçekleyeceğini (implement edeceğini) gösterir. Bu, `alanHesapla()` metodunun `Dikdortgen` sınıfında tanımlanmasını zorunlu kılar.</p>
+                    </div>
                     </div>
                     <div class="bg-light p-4 rounded mt-3">
                         <h4>Kullanım Örneği (Main Metodu)</h4>
@@ -1147,6 +1152,10 @@ class Daire extends Sekil {
         return Math.PI * yaricap * yaricap;
     }
 }</code></pre>
+                    <div class="bg-light p-4 rounded mt-3 explanation-box">
+                        <h4>Açıklama: Abstract Class (Soyut Sınıf)</h4>
+                        <p><strong>Abstract Class (Soyut Sınıf):</strong> `abstract class Sekil` gibi tanımlanan soyut sınıflar, hem soyut metotlar (örneğin `alanHesapla()`) hem de somut metotlar (örneğin `bilgiGoster()`) içerebilir. Doğrudan nesnesi oluşturulamazlar, ancak başka sınıflar tarafından miras alınabilirler. Miras alan alt sınıflar, soyut metotları implement etmek zorundadır.</p>
+                    </div>
                     </div>
                     <div class="bg-light p-4 rounded mt-3">
                         <h4>Kullanım Örneği (Main Metodu)</h4>
@@ -1364,8 +1373,7 @@ Hata: Sıfıra bölme hatası!
                         
                         <div class="bg-light p-4 rounded">
                             <h4>Sınıf Tanımları</h4>
-                            <pre class="bg-dark text-white p-3 rounded vsc-dark-plus"><code>// Soyutlama (Abstraction): Temel Kitap sınıfı, soyut bir metot (getKitapTuru) içerir ve alt sınıfların bu metodu implement etmesini zorlar.
-// Kapsülleme (Encapsulation): 'protected' erişim belirleyiciler ile alanları korur ve 'public' getter/setter metotları ile kontrollü erişim sağlar.
+                            <pre class="bg-dark text-white p-3 rounded"><code>// Soyutlama (Abstraction): Temel Kitap sınıfı
 abstract class Kitap {
     protected String isim;
     protected String yazar;
@@ -1379,10 +1387,8 @@ abstract class Kitap {
         this.oduncAlinabilir = true;
     }
 
-    // Soyut metot: Tüm türetilmiş sınıflar bu metodu kendi özel tanımlamalarıyla sağlamalıdır.
     public abstract String getKitapTuru();
 
-    // Kapsülleme: Alanlara kontrollü erişim sağlayan getter ve setter metotları
     public String getIsim() { return isim; }
     public String getYazar() { return yazar; }
     public int getSayfaSayisi() { return sayfaSayisi; }
@@ -1392,8 +1398,7 @@ abstract class Kitap {
     }
 }
 
-// Kalıtım (Inheritance): Roman sınıfı, Kitap sınıfından kalıtım yoluyla türetilir.
-// Metot Ezme (Method Overriding): getKitapTuru metodu, Roman sınıfına özgü bir şekilde yeniden tanımlanır.
+// Kalıtım (Inheritance): Roman sınıfı
 class Roman extends Kitap {
     private String tur;
 
@@ -1402,15 +1407,13 @@ class Roman extends Kitap {
         this.tur = tur;
     }
 
-    // Metot Ezme (Override): Üst sınıftaki soyut metodu kendi özel implementasyonuyla ezer.
     @Override
     public String getKitapTuru() {
         return "Roman - " + tur;
     }
 }
 
-// Kalıtım (Inheritance): DersKitabi sınıfı da Kitap sınıfından kalıtım yoluyla türetilir.
-// Metot Ezme (Method Overriding): getKitapTuru metodu, DersKitabi sınıfına özgü bir şekilde yeniden tanımlanır.
+// Kalıtım (Inheritance): DersKitabi sınıfı
 class DersKitabi extends Kitap {
     private String ders;
 
@@ -1419,14 +1422,13 @@ class DersKitabi extends Kitap {
         this.ders = ders;
     }
 
-    // Metot Ezme (Override): Üst sınıftaki soyut metodu kendi özel implementasyonuyla ezer.
     @Override
     public String getKitapTuru() {
         return "Ders Kitabı - " + ders;
     }
 }
 
-// Kapsülleme (Encapsulation): Kütüphane sınıfı, kitaplar listesini kendi içinde yönetir.
+// Kapsülleme (Encapsulation): Kütüphane sınıfı
 class Kutuphane {
     private List<Kitap> kitaplar;
     private String isim;
@@ -1436,8 +1438,7 @@ class Kutuphane {
         this.kitaplar = new ArrayList<>();
     }
 
-    // Metot Aşırı Yükleme (Method Overloading): Aynı isimde iki farklı kitapEkle metodu.
-    // Biri tek bir kitap eklerken, diğeri bir liste dolusu kitap ekler.
+    // Metot Aşırı Yükleme (Method Overloading)
     public void kitapEkle(Kitap kitap) {
         kitaplar.add(kitap);
         System.out.println(kitap.getIsim() + " kütüphaneye eklendi.");
@@ -1448,18 +1449,16 @@ class Kutuphane {
         System.out.println(yeniKitaplar.size() + " kitap kütüphaneye eklendi.");
     }
 
-    // Çok Biçimlilik (Polymorphism): 'Kitap' tipinde bir liste üzerinden farklı türdeki kitaplara (Roman, DersKitabi) erişim.
-    // Her kitap nesnesinin getKitapTuru() metodu, kendi gerçek tipine göre çağrılır.
+    // Çok Biçimlilik (Polymorphism)
     public void kitaplariListele() {
         System.out.println("\n" + isim + " Kütüphanesi - Kitap Listesi:");
-        for (Kitap kitap : kitaplar) { // Kitap referansı, Roman veya DersKitabi nesnelerini tutabilir.
+        for (Kitap kitap : kitaplar) {
             System.out.println("Kitap: " + kitap.getIsim() + 
                              ", Yazar: " + kitap.getYazar() + 
-                             ", Tür: " + kitap.getKitapTuru()); // Polymorphic metot çağrısı
+                             ", Tür: " + kitap.getKitapTuru());
         }
     }
 
-    // İstisna İşleme (Exception Handling): try-catch blokları ile olası hataları (kitap bulunamadı, zaten ödünç alınmış) yönetir.
     public void kitapOduncAl(String kitapIsmi) {
         for (Kitap kitap : kitaplar) {
             if (kitap.getIsim().equals(kitapIsmi)) {
@@ -1478,7 +1477,7 @@ class Kutuphane {
                         </div>
                         <div class="bg-light p-4 rounded mt-3">
                             <h4>Kullanım Örneği (Main Metodu)</h4>
-                            <pre class="bg-dark text-white p-3 rounded vsc-dark-plus"><code>public class KutuphaneYonetimSistemi {
+                            <pre class="bg-dark text-white p-3 rounded"><code>public class KutuphaneYonetimSistemi {
     public static void main(String[] args) {
         // Kütüphane oluştur
         Kutuphane kutuphane = new Kutuphane("Merkez Kütüphane");
@@ -1509,7 +1508,7 @@ class Kutuphane {
                         </div>
                         <div class="bg-light p-4 rounded mt-3">
                             <h4>Çıktı:</h4>
-                            <pre class="bg-dark text-white p-3 rounded vsc-dark-plus"><code>Suç ve Ceza kütüphaneye eklendi.
+                            <pre class="bg-dark text-white p-3 rounded"><code>Suç ve Ceza kütüphaneye eklendi.
 1984 kütüphaneye eklendi.
 Java Programlama kütüphaneye eklendi.
 Veri Yapıları kütüphaneye eklendi.
@@ -1528,6 +1527,43 @@ Hata: Kitap bulunamadı: Bilinmeyen Kitap</code></pre>
                 </div>
             </div>
         </section>
+
+        <!-- Interface Section -->
+        <section id="interface" class="mb-5">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h2 class="mb-0">Interface (Arayüz)</h2>
+                </div>
+                <div class="card-body">
+                    <p class="lead">Interface, Java'da tam soyutlamayı sağlayan bir referans tipidir. Sadece soyut metotlar ve sabitler içerebilir (Java 8'den sonra varsayılan ve statik metotlar da eklendi). Bir sınıf birden fazla arayüzü implement edebilir, bu da Java'da çoklu kalıtımın bir yoludur.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Abstract Class Section -->
+        <section id="abstract" class="mb-5">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h2 class="mb-0">Abstract Class (Soyut Sınıf)</h2>
+                </div>
+                <div class="card-body">
+                    <p class="lead">Abstract class, hem soyut metotlar (implementasyonu olmayan metotlar) hem de somut metotlar (implementasyonu olan metotlar) içerebilen bir sınıftır. Abstract sınıfların doğrudan nesnesi oluşturulamaz; miras alınmaları gerekir ve alt sınıflar soyut metotları implement etmelidir.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implement Keyword Section -->
+        <section id="implement" class="mb-5">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h2 class="mb-0">Implement (Uygulama / Gerçekleme)</h2>
+                </div>
+                <div class="card-body">
+                    <p class="lead">'Implement' anahtar kelimesi, bir sınıfın bir arayüzdeki metotları (davranışları) sağladığını belirtmek için kullanılır. Bir sınıf bir arayüzü implement ettiğinde, arayüzde tanımlanan tüm soyut metotları kendi içinde gerçeklemek zorundadır.</p>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <!-- Footer -->
