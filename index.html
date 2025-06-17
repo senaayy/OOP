@@ -1269,7 +1269,17 @@ public class Test {
                     <h2 class="mb-0">Encapsulation (Kapsülleme)</h2>
                 </div>
                 <div class="card-body">
-                    <p class="lead">Encapsulation, bir nesnenin verilerini (alanlarını) ve bu verilere erişimi veya onları değiştirmeyi sağlayan metotları tek bir birim altında birleştirme ve dışarıdan doğrudan erişimi engelleme prensibidir.</p>
+                    <p class="lead">Encapsulation, bir nesnenin verilerini (alanlarını) ve bu verilere erişimi veya onları değiştirmeyi sağlayan metotları tek bir birim altında birleştirme ve dışarıdan doğrudan erişimi engelleme prensibidir. Bu, veri gizliliğini (data hiding) ve veri bütünlüğünü sağlamanın anahtarıdır.</p>
+
+                    <!-- Hatırlatıcı Kutucuk: Getter ve Setter Metotları -->
+                    <div class="alert alert-info" role="alert">
+                        <strong>💡 Kapsülleme ve Getter/Setter Hatırlatması:</strong><br>
+                        <ul>
+                            <li><strong>Getter (Alıcı) Metotları:</strong> Nesnenin özel (<code>private</code>) verilerini güvenli bir şekilde okumak için kullanılır. Genellikle <code>get</code> önekiyle başlar (örn: <code>getName()</code>).</li>
+                            <li><strong>Setter (Ayarlayıcı) Metotları:</strong> Nesnenin özel (<code>private</code>) verilerini kontrollü bir şekilde değiştirmek için kullanılır. Genellikle <code>set</code> önekiyle başlar (örn: <code>setName("Yeni Ad")</code>). Bu metotlar, veri girişi sırasında doğrulama (validation) yapma imkanı sunar ve hatalı veri girişini engeller.</li>
+                            <li>Kapsülleme sayesinde, sınıfın iç yapısı dış dünyaya kapalı olur ve değişiklikler sadece sınıf içinde yapılır, bu da kodun bakımını ve esnekliğini artırır.</li>
+                        </ul>
+                    </div>
                     
                     <div class="bg-light p-4 rounded">
                         <h4>Kolay Örnek (Sınıf Tanımı)</h4>
