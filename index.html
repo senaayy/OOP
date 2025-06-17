@@ -1393,6 +1393,25 @@ Mevcut Bakiye: 1000.0 TL
 Yetersiz bakiye. Para çekme başarısız.
 Geçersiz miktar. Para yatırma başarısız.</code></pre>
                     </div>
+
+                    <!-- Peki Neden Setter Yok? Bilgilendirme -->
+                    <div class="bg-light p-4 rounded mt-4">
+                        <h3 class="text-danger"><i class="fas fa-question-circle me-2"></i> Peki Neden Setter Yok?</h3>
+                        <p>Setter'lar (<code>setBakiye()</code>, <code>setHesapNumarasi()</code> gibi) değişkenlerin değerini dışarıdan değiştirmeye izin verir.</p>
+                        <p>Ama bu sınıfta bilinçli olarak setter metodu yazılmamış.</p>
+                        <p>Neden mi?</p>
+                        <div class="alert alert-primary mt-3" role="alert">
+                            <h5 class="alert-heading"><i class="fas fa-shield-alt me-2"></i> Güvenlik ve Veri Kontrolü için:</h5>
+                            <ul>
+                                <li>Hesap numarası kullanıcı tarafından sonradan değiştirilmemelidir. (Setter yazmak mantıksız olur.)</li>
+                                <li>Bakiye ise sadece <code>paraYatir</code> ve <code>paraCek</code> gibi kontrollü metotlarla değişmelidir.</li>
+                                <li>Eğer dışarıdan doğrudan <code>setBakiye(...)</code> yapılırsa kontrolsüz para giriş/çıkışı olur.</li>
+                            </ul>
+                        </div>
+                        <p class="lead mt-3">Yani setter'ların olmaması bir eksiklik değil, tasarım tercihidir.</p>
+                        <p class="lead">Amaç: Kapsülleme (Encapsulation) ve güvenli veri yönetimi.</p>
+                    </div>
+
                     <div class="bg-light p-4 rounded mt-4">
                         <h4>Zor Örnek (Sınıf Tanımı)</h4>
                         <pre class="bg-dark text-white p-3 rounded"><code>class KullaniciHesabi {
