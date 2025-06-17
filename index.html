@@ -162,11 +162,105 @@
         .vsc-dark-plus .number { color: #B5CEA8; }
         .vsc-dark-plus .function { color: #DCDCAA; }
         .bg-purple {
-            background-color: #8a2be2 !important; /* Mor rengin hex kodu */
+            background-color: #8a2be2 !important;
+        }
+
+        /* Çizim özelliği için stil tanımlamaları */
+        #drawingCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .drawing-tools {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transform: translateX(calc(100% - 50px));
+            transition: transform 0.3s ease;
+            margin-bottom: 0;
+        }
+
+        .drawing-tools.expanded {
+            transform: translateX(0);
+        }
+
+        .drawing-toggle {
+            position: absolute;
+            left: -40px;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border: none;
+            border-radius: 10px 0 0 10px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .drawing-controls {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .drawing-btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .color-picker {
+            width: 100%;
+            height: 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .brush-size {
+            width: 100%;
+            margin: 5px 0;
         }
     </style>
 </head>
 <body>
+    <!-- Çizim araçları -->
+    <div class="drawing-tools">
+        <button class="drawing-toggle" id="drawingToggle">
+            <i class="fas fa-pen"></i>
+        </button>
+        <input type="color" class="color-picker" id="colorPicker" value="#000000">
+        <input type="range" class="brush-size" id="brushSize" min="1" max="20" value="5">
+        <div class="drawing-controls">
+            <button class="drawing-btn" id="clearCanvas">Temizle</button>
+            <button class="drawing-btn" id="toggleDrawing">Çizimi Aç/Kapat</button>
+        </div>
+    </div>
+    <canvas id="drawingCanvas"></canvas>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -2494,6 +2588,80 @@ class Araba implements HareketEdebilir {
             feedback = '<div class="alert alert-danger">Cevabınız eksik veya hatalı.<br>Doğru cevap:<br><pre>' + practiceExamples[topic].answer + '</pre></div>';
         }
         document.getElementById('feedback').innerHTML = feedback;
+        });
+    </script>
+
+    <script>
+        // Çizim özelliği için JavaScript kodu
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
+        const colorPicker = document.getElementById('colorPicker');
+        const brushSize = document.getElementById('brushSize');
+        const clearCanvas = document.getElementById('clearCanvas');
+        const toggleDrawing = document.getElementById('toggleDrawing');
+        const drawingTools = document.querySelector('.drawing-tools');
+        const drawingToggle = document.getElementById('drawingToggle');
+        
+        let isDrawing = false;
+        let isDrawingEnabled = false;
+
+        // Çizim araçlarını aç/kapat
+        drawingToggle.addEventListener('click', () => {
+            drawingTools.classList.toggle('expanded');
+            drawingToggle.classList.toggle('active');
+        });
+
+        // Canvas boyutunu ayarla
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        // Sayfa yüklendiğinde ve yeniden boyutlandırıldığında canvas'ı ayarla
+        window.addEventListener('load', resizeCanvas);
+        window.addEventListener('resize', resizeCanvas);
+
+        // Çizim fonksiyonları
+        function startDrawing(e) {
+            if (!isDrawingEnabled) return;
+            isDrawing = true;
+            draw(e);
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+            ctx.beginPath();
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            
+            ctx.lineWidth = brushSize.value;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = colorPicker.value;
+            
+            ctx.lineTo(e.clientX, e.clientY);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(e.clientX, e.clientY);
+        }
+
+        // Event listeners
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+
+        // Temizleme butonu
+        clearCanvas.addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        // Çizimi açma/kapama
+        toggleDrawing.addEventListener('click', () => {
+            isDrawingEnabled = !isDrawingEnabled;
+            canvas.style.pointerEvents = isDrawingEnabled ? 'auto' : 'none';
+            toggleDrawing.textContent = isDrawingEnabled ? 'Çizimi Kapat' : 'Çizimi Aç';
         });
     </script>
 </body>
