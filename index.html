@@ -502,22 +502,23 @@ public class Test {
                     <div class="bg-light p-4 rounded mt-4">
                         <h4>Zor Örnek (Sınıf Tanımı)</h4>
                         <pre class="bg-dark text-white p-3 rounded"><code>class CalisanMaasHesaplayici {
-    // Temel maaş hesaplama
+    // Temel maaş hesaplama: Saatlik ücret ve çalışma saati ile hesaplanır
     double hesaplaMaas(double saatlikUcret, int calismaSaati) {
         return saatlikUcret * calismaSaati;
     }
 
-    // Fazla mesai ile maaş hesaplama
+    // Fazla mesai ile maaş hesaplama: Normal çalışma ve fazla mesai ücretleri toplanır
     double hesaplaMaas(double saatlikUcret, int calismaSaati, double fazlaMesaiSaatlikUcret, int fazlaMesaiSaati) {
         return (saatlikUcret * calismaSaati) + (fazlaMesaiSaatlikUcret * fazlaMesaiSaati);
     }
 
-    // Prim ile maaş hesaplama
+    // Prim ile maaş hesaplama: Temel maaş, prim oranı ile artırılır
+    // Örnek: Temel maaş 8000 TL, prim oranı 0.15 (%15) ise, 8000 * (1 + 0.15) = 8000 * 1.15 = 9200 TL olur.
     double hesaplaMaas(double temelMaas, double primOrani) {
         return temelMaas * (1 + primOrani);
     }
 
-    // Bonus ile maaş hesaplama
+    // Bonus ile maaş hesaplama: Temel maaşa bonus eklenir
     double hesaplaMaas(double saatlikUcret, int calismaSaati, double bonus) {
         return (saatlikUcret * calismaSaati) + bonus;
     }
@@ -529,16 +530,16 @@ public class Test {
     public static void main(String[] args) {
         CalisanMaasHesaplayici maasHesaplayici = new CalisanMaasHesaplayici();
 
-        // Temel maaş
+        // Temel maaş hesaplama: Saatlik ücret 50 TL, 160 saat çalışma
         System.out.println("Temel Maaş: " + maasHesaplayici.hesaplaMaas(50.0, 160));
 
-        // Fazla mesai ile maaş
+        // Fazla mesai ile maaş hesaplama: Normal çalışma + fazla mesai
         System.out.println("Fazla Mesai ile Maaş: " + maasHesaplayici.hesaplaMaas(50.0, 160, 75.0, 20));
 
-        // Prim ile maaş
+        // Prim ile maaş hesaplama: Temel maaş 8000 TL, prim oranı %15
         System.out.println("Prim ile Maaş: " + maasHesaplayici.hesaplaMaas(8000.0, 0.15));
 
-        // Bonus ile maaş
+        // Bonus ile maaş hesaplama: Temel maaş + 1000 TL bonus
         System.out.println("Bonus ile Maaş: " + maasHesaplayici.hesaplaMaas(50.0, 160, 1000.0));
     }
 }</code></pre>
