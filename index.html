@@ -161,6 +161,9 @@
         .vsc-dark-plus .type { color: #4EC9B0; }
         .vsc-dark-plus .number { color: #B5CEA8; }
         .vsc-dark-plus .function { color: #DCDCAA; }
+        .bg-purple {
+            background-color: #8a2be2 !important; /* Mor rengin hex kodu */
+        }
     </style>
 </head>
 <body>
@@ -1082,6 +1085,132 @@ Dell XPS 15 (Windows) kapatılıyor.</code></pre>
                     <!-- Çoktan Seçmeli Test: Inheritance -->
                     <div class="bg-white p-4 rounded mt-4 border">
                         <h4 class="mb-3">Konu Testi: Inheritance (Kalıtım)</h4>
+                        <div class="mb-4">
+                            <strong class="d-inline-block bg-purple text-white p-3 rounded-pill fs-4 shadow-lg fw-bold mb-3"><i class="fas fa-star me-2"></i> BONUS SORU:</strong><br>
+                            <span class="lead">Aşağıdaki Java sınıflarını inceleyin ve kalıtım ilişkisini anlamaya çalışın.</span>
+                            <pre class="bg-light p-2 rounded"><code>public class TemelGeometrikSekil {
+    private String renk = "beyaz";
+    private boolean dolgu;
+    private java.util.Date olusturulmaTarihi;
+
+    public TemelGeometrikSekil() {
+        olusturulmaTarihi = new java.util.Date();
+    }
+
+    public TemelGeometrikSekil(String renk, boolean dolgu) {
+        olusturulmaTarihi = new java.util.Date();
+        this.renk = renk;
+        this.dolgu = dolgu;
+    }
+
+    public String getRenk() { return renk; }
+    public void setRenk(String renk) { this.renk = renk; }
+
+    public boolean isDolgu() { return dolgu; }
+    public void setDolgu(boolean dolgu) { this.dolgu = dolgu; }
+
+    public java.util.Date getOlusturulmaTarihi() { return olusturulmaTarihi; }
+
+    public String toString() {
+        return "Olusturulma Tarihi: " + olusturulmaTarihi +
+               "\nRenk: " + renk + " ve dolgu: " + dolgu;
+    }
+}</code></pre>
+                            <pre class="bg-light p-2 rounded"><code>public class Daire extends TemelGeometrikSekil {
+    private double yaricap;
+
+    public Daire(String renk, boolean dolgu, double yaricap) {
+        super(renk, dolgu);
+        this.yaricap = yaricap;
+    }
+
+    public double getYaricap() {
+        return yaricap;
+    }
+
+    public void setYaricap(double yaricap) {
+        this.yaricap = yaricap;
+    }
+
+    public double getAlan() {
+        return Math.PI * yaricap * yaricap;
+    }
+
+    public double getCevre() {
+        return 2 * Math.PI * yaricap;
+    }
+
+    @Override
+    public String toString() {
+        return "Olusturulma Tarihi: " + getOlusturulmaTarihi() +
+               "\nRenk: " + getRenk() +
+               " ve dolgu: " + isDolgu() +
+               "\nYaricap: " + yaricap +
+               "\nAlan: " + getAlan() +
+               "\nCevre: " + getCevre();
+    }
+}</code></pre>
+                            <strong>Açıklama:</strong>
+                            <span class="text-info">TemelGeometrikSekil, genel bir şekli temsil ederken, Daire sınıfı TemelGeometrikSekil'den türeyerek (extends anahtar kelimesi ile) onun özelliklerini ve davranışlarını miras alır ve ek olarak yarıçap gibi kendine özgü özellikler ile alan ve çevre hesaplama metotlarını ekler. Bu, Java'da kalıtımın temel bir örneğidir.</span>
+                        </div>
+                        <div class="bg-light p-4 rounded mt-3">
+                            <h4>Kullanım Örneği (Main Metodu)</h4>
+                            <pre class="bg-dark text-white p-3 rounded"><code>public class Main {
+    public static void main(String[] args) {
+        // TemelGeometrikSekil sınıfından bir nesne oluşturma
+        TemelGeometrikSekil sekil1 = new TemelGeometrikSekil("siyah", false);
+        System.out.println("Temel Geometrik Şekil Bilgileri:");
+        System.out.println(sekil1.toString());
+        System.out.println("------------------------");
+
+        // Daire sınıfından bir nesne oluşturma
+        Daire daire1 = new Daire("kırmızı", true, 5.0);
+        System.out.println("Daire Bilgileri:");
+        System.out.println(daire1.toString());
+        System.out.println("------------------------");
+
+        // Daire nesnesinin özelliklerini değiştirme ve tekrar yazdırma
+        daire1.setRenk("mavi");
+        daire1.setDolgu(false);
+        daire1.setYaricap(7.5);
+        System.out.println("Güncellenmiş Daire Bilgileri:");
+        System.out.println(daire1.toString());
+        System.out.println("------------------------");
+    }
+}</code></pre>
+                        </div>
+                        <div class="bg-light p-4 rounded mt-3">
+                            <h4>Çıktı:</h4>
+                            <pre class="bg-dark text-white p-3 rounded"><code>Temel Geometrik Şekil Bilgileri:
+Olusturulma Tarihi: Tue Jun 17 13:08:30 TRT 2025
+Renk: siyah ve dolgu: false
+------------------------
+Daire Bilgileri:
+Olusturulma Tarihi: Tue Jun 17 13:08:30 TRT 2025
+Renk: kırmızı ve dolgu: true
+Yaricap: 5.0
+Alan: 78.53981633974483
+Cevre: 31.41592653589793
+------------------------
+Güncellenmiş Daire Bilgileri:
+Olusturulma Tarihi: Tue Jun 17 13:08:30 TRT 2025
+Renk: mavi ve dolgu: false
+Yaricap: 7.5
+Alan: 176.71458676442586
+Cevre: 47.12388980384689
+------------------------</code></pre>
+                        </div>
+                        <div class="bg-light p-4 rounded mt-4">
+                            <h4><i class="fas fa-lightbulb me-2 text-info"></i> Neler Öğrendik?</h4>
+                            <ul>
+                                <li><strong class="text-primary">Kalıtım (Inheritance):</strong> TemelGeometrikSekil gibi bir üst sınıftan (parent class) Daire gibi bir alt sınıfın (child class) nasıl özellik ve metot miras aldığını gördük.</li>
+                                <li><strong class="text-primary">extends Anahtar Kelimesi:</strong> Bir sınıfın başka bir sınıftan miras aldığını belirtmek için kullanılır. Örneğin, <code>public class Daire extends TemelGeometrikSekil</code>.</li>
+                                <li><strong class="text-primary">super() Anahtar Kelimesi:</strong> Alt sınıfın yapıcı metodundan üst sınıfın yapıcı metodunu çağırmak için kullanılır. Bu, üst sınıfa ait değişkenlerin başlatılmasına olanak tanır.</li>
+                                <li><strong class="text-primary">Metot Ezme (Method Overriding):</strong> Alt sınıfın, üst sınıftan miras aldığı <code>toString()</code> gibi metotları kendi ihtiyaçlarına göre yeniden nasıl tanımladığını (override ettiğini) gördük.</li>
+                                <li><strong class="text-primary">Kod Tekrarının Azaltılması:</strong> Ortak özellikleri ve metotları üst sınıfta tanımlayarak, alt sınıflarda aynı kodu tekrar yazmaktan kaçınırız.</li>
+                                <li><strong class="text-primary">Kodun Yeniden Kullanılabilirliği:</strong> Üst sınıfta yazılan kodun, ondan türeyen tüm alt sınıflar tarafından kullanılabilmesi, kodun yeniden kullanılabilirliğini artırır.</li>
+                            </ul>
+                        </div>
                         <div class="mb-4">
                             <strong>Soru 1:</strong> Aşağıdaki kodun çıktısı nedir?<br>
                             <pre class="bg-light p-2 rounded"><code>class Hayvan {
