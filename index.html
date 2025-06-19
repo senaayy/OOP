@@ -2664,5 +2664,79 @@ class Araba implements HareketEdebilir {
             toggleDrawing.textContent = isDrawingEnabled ? 'Çizimi Kapat' : 'Çizimi Aç';
         });
     </script>
+
+    <!-- BONUS SORU: Overriding Örneği -->
+    <div class="bg-white p-4 rounded mt-4 border">
+        <h4 class="mb-3 text-danger"><i class="fas fa-star me-2"></i>BONUS SORU: Overriding Örneği</h4>
+        <p><strong>a) Aşağıdaki programın çıktısı nedir?</strong></p>
+        <pre class="bg-dark text-white p-3 rounded"><code>public class Test {
+    public static void main(String[] args) {
+        A a = new A();
+        a.p(10);
+        a.p(10.0);
+    }
+}
+
+class B {
+    public void p(double i) {
+        System.out.println(i * 2);
+    }
+}
+
+class A extends B {
+    // This method overrides the method in B
+    public void p(double i) {
+        System.out.println(i);
+    }
+}
+</code></pre>
+        <h5>Çözüm ve Çıktı:</h5>
+        <ul>
+            <li><strong>a.p(10);</strong> çağrısı: 10, otomatik olarak double'a çevrilir ve <code>A.p(double)</code> çağrılır. Çıktı: <code>10.0</code></li>
+            <li><strong>a.p(10.0);</strong> çağrısı: <code>A.p(double)</code> çağrılır. Çıktı: <code>10.0</code></li>
+        </ul>
+        <div class="bg-light p-2 rounded mt-2"><strong>Program Çıktısı:</strong>
+            <pre class="bg-dark text-white p-2 rounded mb-0">10.0
+10.0</pre>
+        </div>
+        <p class="mt-2 text-info">Burada <strong>overriding</strong> (ezme) vardır. <code>A</code> sınıfı, <code>B</code> sınıfındaki <code>p(double)</code> metodunu kendi ihtiyacına göre yeniden tanımlar ve her iki çağrıda da <code>A</code>'daki metot çalışır.</p>
+    </div>
+
+    <!-- BONUS SORU: Overloading Örneği -->
+    <div class="bg-white p-4 rounded mt-4 border">
+        <h4 class="mb-3 text-danger"><i class="fas fa-star me-2"></i>BONUS SORU: Overloading Örneği</h4>
+        <p><strong>b) Aşağıdaki programın çıktısı nedir?</strong></p>
+        <pre class="bg-dark text-white p-3 rounded"><code>public class Test {
+    public static void main(String[] args) {
+        A a = new A();
+        a.p(10);
+        a.p(10.0);
+    }
+}
+
+class B {
+    public void p(double i) {
+        System.out.println(i * 2);
+    }
+}
+
+class A extends B {
+    // This method overloads the method in B
+    public void p(int i) {
+        System.out.println(i);
+    }
+}
+</code></pre>
+        <h5>Çözüm ve Çıktı:</h5>
+        <ul>
+            <li><strong>a.p(10);</strong> çağrısı: <code>A.p(int)</code> çağrılır. Çıktı: <code>10</code></li>
+            <li><strong>a.p(10.0);</strong> çağrısı: <code>B.p(double)</code> çağrılır. Çıktı: <code>20.0</code></li>
+        </ul>
+        <div class="bg-light p-2 rounded mt-2"><strong>Program Çıktısı:</strong>
+            <pre class="bg-dark text-white p-2 rounded mb-0">10
+20.0</pre>
+        </div>
+        <p class="mt-2 text-info">Burada <strong>overloading</strong> (aşırı yükleme) vardır. <code>A</code> sınıfı, <code>p</code> metodunu farklı parametreyle (int) yeniden tanımlar. <code>a.p(10)</code> çağrısı <code>A</code>'daki <code>p(int)</code>'i, <code>a.p(10.0)</code> çağrısı ise <code>B</code>'deki <code>p(double)</code>'ı çalıştırır.</p>
+    </div>
 </body>
 </html> 
