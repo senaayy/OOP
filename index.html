@@ -1903,81 +1903,82 @@ public class Test {
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         <h2 class="mb-4">İstisna İşleme (Exception Handling)</h2>
-                        <p class="lead">Program çalışırken oluşabilecek hataları yönetmek için kullanılır.</p>
-                        
-                        <div class="bg-light p-4 rounded">
-                            <h4>Kolay Örnek (Sınıf Tanımı)</h4>
-                            <pre class="bg-dark text-white p-3 rounded"><code>public class BolmeIslemi {
-    public double bol(int sayi1, int sayi2) {
-        try {
-            return sayi1 / sayi2;
-        } catch (ArithmeticException e) {
-            System.out.println("Hata: Sıfıra bölme hatası!");
-            return 0.0;
-        }
-    }
+                        <div class="alert alert-primary shadow-sm mb-4">
+                            <h4 class="mb-3"><i class="fas fa-info-circle me-2"></i>İstisna İşleme (Exception Handling) Nedir?</h4>
+                            <ul class="mb-3">
+                                <li><strong>İstisna (Exception)</strong>, program çalışırken oluşan beklenmedik hatalardır. Sıfıra bölme, yanlış tipte veri girişi veya geçersiz parametre gibi durumlarda ortaya çıkar.</li>
+                                <li>İstisnalar, programın çökmesini engellemek ve hataları kontrollü şekilde yönetmek için kullanılır.</li>
+                            </ul>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="alert alert-secondary mb-2">
+                                        <strong>try-catch-finally Temel Yapısı:</strong>
+                                        <pre class="bg-light p-2 rounded mb-0"><code>try {
+    // Hata oluşturabilecek kod
+} catch (ExceptionTipi e) {
+    // Hata yakalandığında çalışacak kod
+} finally {
+    // Her durumda çalışacak kod (isteğe bağlı)
 }</code></pre>
-                        </div>
-                        <div class="bg-light p-4 rounded mt-3">
-                            <h4>Kullanım Örneği (Main Metodu)</h4>
-                            <pre class="bg-dark text-white p-3 rounded"><code>public class IstisnaIslemeOrnek {
-    public static void main(String[] args) {
-        BolmeIslemi bolme = new BolmeIslemi();
-        System.out.println("10 / 2 = " + bolme.bol(10, 2));
-        System.out.println("10 / 0 = " + bolme.bol(10, 0));
-    }
-}</code></pre>
-                        </div>
-                        <div class="bg-light p-4 rounded mt-3">
-                            <h4>Çıktı:</h4>
-                            <pre class="bg-dark text-white p-3 rounded"><code>10 / 2 = 5.0
-Hata: Sıfıra bölme hatası!
-10 / 0 = 0.0</code></pre>
-                        </div>
-                        <!-- Çoktan Seçmeli Test: Exceptions -->
-                        <div class="bg-white p-4 rounded mt-4 border">
-                            <h4 class="mb-3">Konu Testi: Exceptions (İstisna İşleme)</h4>
-                            <div class="mb-4">
-                                <strong>Soru 1:</strong> Aşağıdaki kodun çıktısı nedir?<br>
-                                <pre class="bg-light p-2 rounded"><code>public class Test {
-    public static void main(String[] args) {
-        try {
-            int x = 10 / 0;
-        } catch (ArithmeticException e) {
-            System.out.println("Hata: " + e.getMessage());
-        }
-    }
-}</code></pre>
-                                <ul class="list-unstyled">
-                                    <li>A) 0</li>
-                                    <li>B) Hata: / by zero</li>
-                                    <li>C) Derleme hatası</li>
-                                    <li>D) Hiçbir şey yazmaz</li>
-                                </ul>
-                                <span class="text-success">✅ Doğru cevap: [B]</span><br>
-                                <span class="text-info">❗ Açıklama: Sıfıra bölme hatası ArithmeticException fırlatır ve catch bloğu çalışır.</span>
-                    </div>
-                            <div class="mb-4">
-                                <strong>Soru 2:</strong> Exceptions ile ilgili aşağıdakilerden hangisi yanlıştır?<br>
-                                <ul class="list-unstyled">
-                                    <li>A) try-catch blokları hata yönetimi için kullanılır.</li>
-                                    <li>B) finally bloğu her zaman çalışır.</li>
-                                    <li>C) checked exceptions derleme zamanında kontrol edilir.</li>
-                                    <li>D) Sadece unchecked exceptions yakalanabilir.</li>
-                                </ul>
-                                <span class="text-success">✅ Doğru cevap: [D]</span><br>
-                                <span class="text-info">❗ Açıklama: Hem checked hem unchecked exceptions yakalanabilir.</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="alert alert-secondary mb-2">
+                                        <strong>Neden Exception Handling Kullanılır?</strong>
+                                        <ul class="mb-0">
+                                            <li>Programın beklenmedik şekilde durmasını engeller.</li>
+                                            <li>Hataları kullanıcıya anlaşılır şekilde gösterebiliriz.</li>
+                                            <li>Hatalı durumlarda programı güvenli şekilde sonlandırabiliriz.</li>
+                                            <li>Kodun okunabilirliğini ve bakımını artırır.</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-4">
-                                <strong>Soru 3:</strong> Aşağıdakilerden hangisi exception handling'in avantajlarından biri değildir?<br>
-                                <ul class="list-unstyled">
-                                    <li>A) Programın beklenmedik şekilde durmasını engeller</li>
-                                    <li>B) Hataları yönetilebilir hale getirir</li>
-                                    <li>C) Kodun okunabilirliğini artırır</li>
-                                    <li>D) Hataları tamamen yok eder</li>
-                                </ul>
-                                <span class="text-success">✅ Doğru cevap: [D]</span><br>
-                                <span class="text-info">❗ Açıklama: Exception handling hataları yok etmez, yönetilebilir hale getirir.</span>
+                        </div>
+                        <div class="row g-4 mb-4">
+                            <div class="col-md-6">
+                                <div class="card h-100 border-info shadow-sm">
+                                    <div class="card-header bg-info text-white"><i class="fas fa-bolt me-2"></i>System.exit()</div>
+                                    <div class="card-body">
+                                        <p class="mb-2">Programı anında sonlandırır. Genellikle önerilmez, çünkü programın kalan kısmı çalışmaz ve kaynaklar düzgün kapanmaz.</p>
+                                        <pre class="bg-light p-2 rounded mb-0"><code>System.exit(1);</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 border-warning shadow-sm">
+                                    <div class="card-header bg-warning text-white"><i class="fas fa-divide me-2"></i>ArithmeticException</div>
+                                    <div class="card-body">
+                                        <p class="mb-2">Matematiksel işlemlerde (ör. sıfıra bölme) otomatik olarak fırlatılır veya <code>throw new ArithmeticException(...)</code> ile siz de fırlatabilirsiniz.</p>
+                                        <pre class="bg-light p-2 rounded mb-0"><code>if (sayi2 == 0)
+    throw new ArithmeticException("Bolen sifir olamaz");</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-4 mb-4">
+                            <div class="col-md-6">
+                                <div class="card h-100 border-danger shadow-sm">
+                                    <div class="card-header bg-danger text-white"><i class="fas fa-keyboard me-2"></i>InputMismatchException</div>
+                                    <div class="card-body">
+                                        <p class="mb-2">Kullanıcıdan beklenen tipte veri alınmazsa (ör. int yerine string girilirse) fırlatılır. Özellikle <code>Scanner</code> ile girişte sıkça görülür.</p>
+                                        <pre class="bg-light p-2 rounded mb-0"><code>try {
+    int n = scanner.nextInt();
+} catch (InputMismatchException e) {
+    // Hatalı giriş
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 border-success shadow-sm">
+                                    <div class="card-header bg-success text-white"><i class="fas fa-ban me-2"></i>IllegalArgumentException</div>
+                                    <div class="card-body">
+                                        <p class="mb-2">Bir metoda geçersiz (mantıksal olarak hatalı) parametre verildiğinde fırlatılır. Kendi metotlarınızda parametre kontrolü için kullanabilirsiniz.</p>
+                                        <pre class="bg-light p-2 rounded mb-0"><code>if (yaricap < 0)
+    throw new IllegalArgumentException("Yaricap negatif olamaz");</code></pre>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2737,6 +2738,128 @@ class A extends B {
 20.0</pre>
         </div>
         <p class="mt-2 text-info">Burada <strong>overloading</strong> (aşırı yükleme) vardır. <code>A</code> sınıfı, <code>p</code> metodunu farklı parametreyle (int) yeniden tanımlar. <code>a.p(10)</code> çağrısı <code>A</code>'daki <code>p(int)</code>'i, <code>a.p(10.0)</code> çağrısı ise <code>B</code>'deki <code>p(double)</code>'ı çalıştırır.</p>
+    </div>
+
+    <!-- İleri Seviye İstisna İşleme ve Sık Kullanılan Exception Örnekleri -->
+    <div class="bg-white p-4 rounded mt-4 border">
+        <h4 class="mb-3 text-danger"><i class="fas fa-exclamation-triangle me-2"></i>System.exit() ile Programı Sonlandırma</h4>
+        <pre class="bg-dark text-white p-3 rounded"><code>import java.util.Scanner;
+
+public class BolmeMetotIle {
+    public static int bolme(int sayi1, int sayi2) {
+        if (sayi2 == 0) {
+            System.out.println("Bolen sifir olamaz");
+            System.exit(1);
+        }
+        return sayi1 / sayi2;
+    }
+
+    public static void main(String[] args) {
+        Scanner giris = new Scanner(System.in);
+        System.out.print("Lutfen iki tam sayi giriniz: ");
+        int sayi1 = giris.nextInt();
+        int sayi2 = giris.nextInt();
+        int sonuc = bolme(sayi1, sayi2);
+        System.out.println(sayi1 + " / " + sayi2 + " = " + sonuc + " dir.");
+    }
+}
+</code></pre>
+        <h5>Çıktı:</h5>
+        <pre class="bg-dark text-white p-2 rounded mb-0">Lutfen iki tam sayi giriniz: 5 3
+5 / 3 = 1 dir.
+
+Lutfen iki tam sayi giriniz: 5 0
+Bolen sifir olamaz</pre>
+        <div class="alert alert-info mt-2">System.exit(1) çağrısı, programı hemen sonlandırır. Bu yöntem genellikle önerilmez; çünkü programın kalan kısmı çalışmaz ve kaynaklar düzgün kapanmaz.</div>
+    </div>
+
+    <div class="bg-white p-4 rounded mt-4 border">
+        <h4 class="mb-3 text-danger"><i class="fas fa-exclamation-triangle me-2"></i>ArithmeticException ile Hata Fırlatma ve Yakalama</h4>
+        <pre class="bg-dark text-white p-3 rounded"><code>import java.util.Scanner;
+
+public class BolmeIstisnaIle {
+    public static int bolme(int sayi1, int sayi2) {
+        if (sayi2 == 0)
+            throw new ArithmeticException("Bolen sifir olamaz");
+        return sayi1 / sayi2;
+    }
+
+    public static void main(String[] args) {
+        Scanner giris = new Scanner(System.in);
+        System.out.print("Lutfen iki tam sayi giriniz: ");
+        int sayi1 = giris.nextInt();
+        int sayi2 = giris.nextInt();
+        try {
+            int sonuc = bolme(sayi1, sayi2);
+            System.out.println(sayi1 + " / " + sayi2 + " = " + sonuc + " dir.");
+        } catch (ArithmeticException ex) {
+            System.out.println("Istisna: bir tam sayi sifira bolunemez");
+        }
+        System.out.println("Yurutme devam ediyor ...");
+    }
+}
+</code></pre>
+        <h5>Çıktı:</h5>
+        <pre class="bg-dark text-white p-2 rounded mb-0">Lutfen iki tam sayi giriniz: 5 3
+5 / 3 = 1 dir.
+Yurutme devam ediyor ...
+
+Lutfen iki tam sayi giriniz: 5 0
+Istisna: bir tam sayi sifira bolunemez
+Yurutme devam ediyor ...</pre>
+        <div class="alert alert-info mt-2">throw new ArithmeticException(...) ile hata fırlatılır, try-catch ile yakalanır. Program sonlanmaz, hata yönetilebilir şekilde ele alınır.</div>
+    </div>
+
+    <div class="bg-white p-4 rounded mt-4 border">
+        <h4 class="mb-3 text-danger"><i class="fas fa-exclamation-triangle me-2"></i>InputMismatchException ile Kullanıcı Girdisi Kontrolü</h4>
+        <pre class="bg-dark text-white p-3 rounded"><code>import java.util.*;
+
+public class InputMismatchExceptionDemo {
+    public static void main(String[] args) {
+        Scanner giris = new Scanner(System.in);
+        boolean giriseDevamEt = true;
+        do {
+            try {
+                System.out.print("Bir tam sayi giriniz: ");
+                int number = giris.nextInt();
+                System.out.println("Girilen sayi " + number + " dir.");
+                giriseDevamEt = false;
+            } catch (InputMismatchException ex) {
+                System.out.println("Tekrar deneyin. (Gecersiz giris: bir tam sayi gerekiyor)");
+                giris.nextLine(); // Girisi sil
+            }
+        } while (giriseDevamEt);
+    }
+}
+</code></pre>
+        <h5>Çıktı:</h5>
+        <pre class="bg-dark text-white p-2 rounded mb-0">Bir tam sayi giriniz: 3
+Girilen sayi 3 dir.
+
+Bir tam sayi giriniz: 3.0
+Tekrar deneyin. (Gecersiz giris: bir tam sayi gerekiyor)
+Bir tam sayi giriniz: 4
+Girilen sayi 4 dir.</pre>
+        <div class="alert alert-info mt-2">InputMismatchException, beklenen tipte olmayan bir giriş yapıldığında fırlatılır. Kullanıcıdan güvenli veri almak için try-catch ile kontrol edilir.</div>
+    </div>
+
+    <div class="bg-white p-4 rounded mt-4 border">
+        <h4 class="mb-3 text-danger"><i class="fas fa-exclamation-triangle me-2"></i>throws IllegalArgumentException ile Kendi İstisnanı Fırlat</h4>
+        <pre class="bg-dark text-white p-3 rounded"><code>public class CemberIstisnaIle {
+    private double yaricap;
+    public void setYaricap(double yeniYaricap) {
+        if (yeniYaricap >= 0)
+            yaricap = yeniYaricap;
+        else
+            throw new IllegalArgumentException("Yaricap negatif olamaz");
+    }
+    // ... diğer metotlar ...
+}
+</code></pre>
+        <h5>Kullanım:</h5>
+        <pre class="bg-dark text-white p-3 rounded"><code>CemberIstisnaIle c = new CemberIstisnaIle();
+c.setYaricap(-5); // IllegalArgumentException fırlatır</code></pre>
+        <div class="alert alert-info mt-2">IllegalArgumentException, metotlara geçersiz (mantıksal olarak hatalı) parametre verildiğinde fırlatılır. Kendi kontrollerinizi bu şekilde yapabilirsiniz.</div>
     </div>
 </body>
 </html> 
